@@ -15,7 +15,10 @@ Regards and one more time, thank you for the opportunity!
 I've defined a single conventions for this project (I always have this in mind). You 
 
 ## Database Conventions
-To avoid problems with the pattern and 
+To avoid problems with names and the pattern of tables, I conventioned that all tables have a minimum structure, that you can see in the imagem below:
+[image]
+
+- One unique key per table (Except for N to N situations, but not applicable on this project).
 
 ## Architecture
 
