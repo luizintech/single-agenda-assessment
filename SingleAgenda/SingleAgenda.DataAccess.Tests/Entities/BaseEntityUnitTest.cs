@@ -31,8 +31,6 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         {
             TestThePrimaryKeyOfEntityModel(typeof(EntityBase));
             TestThePrimaryKeyOfEntityModel(typeof(Person));
-            TestThePrimaryKeyOfEntityModel(typeof(NaturalPerson));
-            TestThePrimaryKeyOfEntityModel(typeof(LegalPerson));
             TestThePrimaryKeyOfEntityModel(typeof(Address));
         }
 
@@ -45,8 +43,6 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         {
             TestTheCreatedDateFieldRequirement(typeof(EntityBase));
             TestTheCreatedDateFieldRequirement(typeof(Person));
-            TestTheCreatedDateFieldRequirement(typeof(NaturalPerson));
-            TestTheCreatedDateFieldRequirement(typeof(LegalPerson));
             TestTheCreatedDateFieldRequirement(typeof(Address));
         }
 
@@ -59,8 +55,6 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         {
             TestTheLogicalExclusionRequirement(typeof(EntityBase));
             TestTheLogicalExclusionRequirement(typeof(Person));
-            TestTheLogicalExclusionRequirement(typeof(NaturalPerson));
-            TestTheLogicalExclusionRequirement(typeof(LegalPerson));
             TestTheLogicalExclusionRequirement(typeof(Address));
         }
 

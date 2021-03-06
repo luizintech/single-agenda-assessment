@@ -4,6 +4,8 @@ using SingleAgenda.Entities.Contact;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Configuration;
 
 namespace SingleAgenda.Infra.Configuration
 {
@@ -39,8 +41,7 @@ namespace SingleAgenda.Infra.Configuration
 
         #endregion
 
-        public DbSet<NaturalPerson> NaturalPersons { get; set; }
-        public DbSet<LegalPerson> LegalPersons { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,6 +55,12 @@ namespace SingleAgenda.Infra.Configuration
                 .HasForeignKey(a => a.PersonId);
 
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SingleAgenda;Persist Security Info=True;");
+        }
+
 
     }
 }
