@@ -6,9 +6,9 @@
 </p>
 
 ## About The Project Architecture 
-Hi there! This is a sample .
+Hi there! This is a sample ....
 
-All the rights like I mentioned above are from the company <a href="https://www.kinvo.com.br/" target="_blank">Kinvo</a>.
+
 
 ## License
 Open-sourced software licensed under the [MIT license] (https://opensource.org/licenses/MIT).
