@@ -53,5 +53,23 @@ namespace SingleAgenda.DataAccess.Tests.Entities
             Assert.IsTrue(datetimeCreateField, "You must implement a creation date field.");
         }
 
+        /// <summary>
+        /// All my delete methods will be only logical exclusion. 
+        /// For this, I'll set the field. (Removed)
+        /// </summary>
+        [Test]
+        public void RequiresLogicalExcludeField()
+        {
+            var type = typeof(EntityBase);
+            var logicalFields = type.GetRuntimeProperties()
+                 .Where(pi => pi.PropertyType == typeof(bool)).ToArray();
+
+            var removedField = false;
+            foreach (var field in logicalFields)
+                removedField = field.Name == "Removed";
+
+            Assert.IsTrue(removedField, "You must include the Removed field.");
+        }
+
     }
 }

@@ -11,7 +11,12 @@ namespace SingleAgenda.Entities.Base
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public DateTime CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
+        public bool Removed { get; set; }
 
     }
 }
