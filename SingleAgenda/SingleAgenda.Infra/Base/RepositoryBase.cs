@@ -13,12 +13,11 @@ namespace SingleAgenda.Infra.Base
         : IRepository<T>, IDisposable
         where T : EntityBase
     {
+        private readonly SingleAgendaDbContext _context;
 
         #region Constructors
 
-        private readonly SingleAgendaDbContext _context;
-
-        protected RepositoryBase(IServiceProvider serviceProvider)
+        public RepositoryBase(IServiceProvider serviceProvider)
             : this(new SingleAgendaDbContext(serviceProvider))
         {
         }

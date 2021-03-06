@@ -56,10 +56,13 @@ namespace SingleAgenda.Infra.Configuration
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SingleAgenda;Persist Security Info=True;");
-        }
+        //Use this just to setup initial database.
+        //Just uncomment this lines bellow.
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SingleAgenda;Persist Security Info=True;");
+        //}
 
 
     }
