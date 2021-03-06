@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingleAgenda.Entities.Person
+namespace SingleAgenda.Entities.Contact
 {
     public enum PersonType
     {

@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using SingleAgenda.Entities.Location;
 using SingleAgenda.Entities.Base;
-using SingleAgenda.Entities.Person;
+using SingleAgenda.Entities.Contact;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

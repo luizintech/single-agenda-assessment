@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SingleAgenda.Entities.Location;
-using SingleAgenda.Entities.Person;
+using SingleAgenda.Entities.Contact;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -47,15 +47,12 @@ namespace SingleAgenda.Infra.Configuration
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<StudentCourse>()
-            //    .HasKey(sc => new { sc.StudentId, sc.CourseId });
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.Person)
+                .WithMany(p => p.Addresses)
+                .HasPrincipalKey(p => p.Id)
+                .HasForeignKey(a => a.PersonId);
 
-            //modelBuilder.Entity<CourseStatistic>()
-            //    .HasOne(cs => cs.Course)
-            //    .WithMany()
-            //    .HasPrincipalKey(cs => cs.Id)
-            //    .HasForeignKey(c => c.CourseId)
-            //    .OnDelete(DeleteBehavior.Restrict);
         }
 
     }
