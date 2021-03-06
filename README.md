@@ -16,9 +16,11 @@ I've defined a single conventions for this project (I always have this in mind).
 
 ## Database Conventions
 To avoid problems with names and the pattern of tables, I conventioned that all tables have a minimum structure, that you can see in the imagem below:
-<center><img src="https://user-images.githubusercontent.com/1747058/110217936-a9dd1f80-7e95-11eb-9753-d6a5297e1430.png" /></center>
+<center><img src="https://user-images.githubusercontent.com/1747058/110218028-35ef4700-7e96-11eb-9012-c9a7ef30c640.png" /></center>
 
 - One unique key per table (Except for N to N situations, but not applicable on this project).
+- CreatedAt, UpdatedAt and Removed fields, part of convetions to audit the data.
+- The delete methods will only make the logical delete. The data will be kept on the table.
 
 ## Architecture
 
