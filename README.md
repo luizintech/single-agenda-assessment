@@ -24,6 +24,9 @@ To avoid problems with names and the pattern of tables, I conventioned that all 
 
 ## Architecture
 
+### Repositories Layer
+I started the project making a generic operation for CRUD (IRepository), but writing the tests and seeing the results, it not worth and I prefer modify the responsability, for the business rules layer (Application). The code I'll maintain in the project, because maybe be util.
+
 ## Tests Layers and TDD approach
 Most of the crytical parts and importants conventions to check, I used the TDD approach.
 Not only to develop and refactoring moments (you can see in all commits that the state of objects had changed during the development and this is a little custome that I maintain in all the projects that I do, evolve my code always). 
