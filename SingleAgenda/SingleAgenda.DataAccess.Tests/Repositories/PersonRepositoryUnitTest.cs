@@ -26,9 +26,6 @@ namespace SingleAgenda.DataAccess.Tests.Repositories
 
             using (var context = new SingleAgendaDbContext(options))
             {
-                var personRepository = new PersonRepository(context);
-                var addressRepository = new AddressRepository(context);
-
                 var naturalPerson = new Person()
                 {
                     PersonType = PersonType.Natural,
@@ -37,7 +34,8 @@ namespace SingleAgenda.DataAccess.Tests.Repositories
                     Document = "14950349090",
                     Name = "Fernando",
                 };
-                var inserted = personRepository.Add(naturalPerson);
+                context.Persons.Add(naturalPerson);
+                var inserted = context.SaveChanges();
 
                 Assert.IsTrue(inserted > 0, "It was not possible to insert the natural person.");
 
@@ -51,11 +49,8 @@ namespace SingleAgenda.DataAccess.Tests.Repositories
                     PersonId = inserted
                 };
 
-                var newAddress = addressRepository.Add(address);
-                Assert.IsTrue(newAddress > 0, "It was not possible to insert the address for the person.");
-
-
-
+                context.Addresses.Add(address);
+                Assert.IsTrue(context.SaveChanges() > 0, "It was not possible to insert the address for the person.");
             }
 
         }
