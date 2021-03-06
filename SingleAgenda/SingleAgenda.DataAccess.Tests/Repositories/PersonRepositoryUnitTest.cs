@@ -18,7 +18,7 @@ namespace SingleAgenda.DataAccess.Tests.Repositories
     public class PersonRepositoryUnitTest
     {
         [Test]
-        public void IncludeANaturalPersonAndListAPerson()
+        public void IncludeANaturalPerson()
         {
             var options = new DbContextOptionsBuilder<SingleAgendaDbContext>()
                 .UseInMemoryDatabase(databaseName: "SingleAgendaTests")
@@ -53,6 +53,9 @@ namespace SingleAgenda.DataAccess.Tests.Repositories
 
                 var newAddress = addressRepository.Add(address);
                 Assert.IsTrue(newAddress > 0, "It was not possible to insert the address for the person.");
+
+
+
             }
 
         }
