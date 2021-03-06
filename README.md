@@ -16,7 +16,7 @@ I've defined a single conventions for this project (I always have this in mind).
 
 ## Database Conventions
 To avoid problems with names and the pattern of tables, I conventioned that all tables have a minimum structure, that you can see in the imagem below:
-<center><img src="![image](https://user-images.githubusercontent.com/1747058/110217936-a9dd1f80-7e95-11eb-9753-d6a5297e1430.png)" /></center>
+<center><img src="https://user-images.githubusercontent.com/1747058/110217936-a9dd1f80-7e95-11eb-9753-d6a5297e1430.png" /></center>
 
 - One unique key per table (Except for N to N situations, but not applicable on this project).
 
