@@ -1,6 +1,7 @@
 using NUnit.Framework;
+using SingleAgenda.Entities.Location;
 using SingleAgenda.Entities.Base;
-using SingleAgenda.Entities.Contact;
+using SingleAgenda.Entities.Person;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,7 +30,10 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         public void NeedsAPrimaryKeyandMustBeInteger()
         {
             TestThePrimaryKeyOfEntityModel(typeof(EntityBase));
-            TestThePrimaryKeyOfEntityModel(typeof(Contact));
+            TestThePrimaryKeyOfEntityModel(typeof(Person));
+            TestThePrimaryKeyOfEntityModel(typeof(NaturalPerson));
+            TestThePrimaryKeyOfEntityModel(typeof(LegalPerson));
+            TestThePrimaryKeyOfEntityModel(typeof(Address));
         }
 
         /// <summary>
@@ -40,7 +44,10 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         public void RequiresAtLeastOneFieldToControlCreateDate()
         {
             TestTheCreatedDateFieldRequirement(typeof(EntityBase));
-            TestTheCreatedDateFieldRequirement(typeof(Contact));
+            TestTheCreatedDateFieldRequirement(typeof(Person));
+            TestTheCreatedDateFieldRequirement(typeof(NaturalPerson));
+            TestTheCreatedDateFieldRequirement(typeof(LegalPerson));
+            TestTheCreatedDateFieldRequirement(typeof(Address));
         }
 
         /// <summary>
@@ -50,8 +57,11 @@ namespace SingleAgenda.DataAccess.Tests.Entities
         [Test]
         public void RequiresLogicalExcludeField()
         {
-            var type = typeof(EntityBase);
-            TestTheLogicalExclusionRequirement(type);
+            TestTheLogicalExclusionRequirement(typeof(EntityBase));
+            TestTheLogicalExclusionRequirement(typeof(Person));
+            TestTheLogicalExclusionRequirement(typeof(NaturalPerson));
+            TestTheLogicalExclusionRequirement(typeof(LegalPerson));
+            TestTheLogicalExclusionRequirement(typeof(Address));
         }
 
         #region Private methods
