@@ -5,19 +5,19 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presentation", "1-Presentation", "{7F7AAFBA-6E5E-4D3C-928E-F1CA8721183A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Application", "2-Application", "{DAE0CE2D-735B-4AC3-9171-C0D59355C784}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Domain", "2-Domain", "{DAE0CE2D-735B-4AC3-9171-C0D59355C784}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{F92A9492-F05C-499B-86AD-5E5CB44058E0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Infra and Data", "3-Infra and Data", "{B7A4F094-099B-4FC8-A2E2-9A6B0A6ACA46}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infra and Data", "4-Infra and Data", "{B7A4F094-099B-4FC8-A2E2-9A6B0A6ACA46}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Framework", "4-Framework", "{E5670316-E1FA-4775-A6CD-8D7940E861E9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Framework", "5-Framework", "{E5670316-E1FA-4775-A6CD-8D7940E861E9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Tests", "5-Tests", "{C0EDB7E6-A3E9-4E7C-A6FD-1A798C138BBE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Tests", "6-Tests", "{C0EDB7E6-A3E9-4E7C-A6FD-1A798C138BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Entities", "SingleAgenda.Entities\SingleAgenda.Entities.csproj", "{396E12AE-9B59-45C0-8F08-4DF46FA558F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Entities", "SingleAgenda.Entities\SingleAgenda.Entities.csproj", "{396E12AE-9B59-45C0-8F08-4DF46FA558F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.DataAccess.Tests", "SingleAgenda.DataAccess.Tests\SingleAgenda.DataAccess.Tests.csproj", "{7CC03531-AC51-4952-8DB9-BFD1766FD95D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.DataAccess.Tests", "SingleAgenda.DataAccess.Tests\SingleAgenda.DataAccess.Tests.csproj", "{7CC03531-AC51-4952-8DB9-BFD1766FD95D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Infra", "SingleAgenda.Infra\SingleAgenda.Infra.csproj", "{799C9399-BD0E-45C2-9CA5-9D6A815073BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,10 @@ Global
 		{7CC03531-AC51-4952-8DB9-BFD1766FD95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CC03531-AC51-4952-8DB9-BFD1766FD95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CC03531-AC51-4952-8DB9-BFD1766FD95D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799C9399-BD0E-45C2-9CA5-9D6A815073BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799C9399-BD0E-45C2-9CA5-9D6A815073BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799C9399-BD0E-45C2-9CA5-9D6A815073BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799C9399-BD0E-45C2-9CA5-9D6A815073BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{396E12AE-9B59-45C0-8F08-4DF46FA558F9} = {B7A4F094-099B-4FC8-A2E2-9A6B0A6ACA46}
 		{7CC03531-AC51-4952-8DB9-BFD1766FD95D} = {C0EDB7E6-A3E9-4E7C-A6FD-1A798C138BBE}
+		{799C9399-BD0E-45C2-9CA5-9D6A815073BA} = {B7A4F094-099B-4FC8-A2E2-9A6B0A6ACA46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C96C6FF6-6EC7-4257-9D01-A9D380721976}
