@@ -1,5 +1,5 @@
-import { Address } from "node:cluster";
 import { BaseModel } from "../base/base-model";
+import { Address } from "../location/address";
 import { Gender } from "./gender";
 import { PersonType } from "./person-type";
 

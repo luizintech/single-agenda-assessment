@@ -1,0 +1,22 @@
+.container, .login-form, .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button.login {
+    width: 100%;
+    border-radius: 18px;
+}
+.header {
+    margin-bottom: 2em;
+    font-size: 3em;
+}
+.login-form {
+    border: 1px solid;
+    padding: 6vh;
+    border-radius: 8px;
+}
+mat-form-field, .login-form {
+    width: 45vw; 
+}
