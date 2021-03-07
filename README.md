@@ -8,11 +8,23 @@
 ## About SingleAgenda
 Hi there! Thank you for your time and take a look for a moment for this project. SingleAgenda was the name, I don't know why, but it works.
 I invite you my friend to analyse this code, database and running application.
-Questions about the architecture, how to install and some conventions, I'll explain below.
+Questions about the architecture, how to install and some conventions, I'll explain bellow.
 Regards and one more time, thank you for the opportunity!
 
+## Setup the Projects
+To setup the Single Agenda is very easy and I'll show you how properly setup it.
+
+### Backend
+....
+
+### Frontend
+....
+
+
 ## Nomenclature definition and conventions
-I've defined a single conventions for this project (I always have this in mind). You 
+I've defined a single conventions for this project (I always keep this in mind). You will note on the structure this caracteristics:
+- Kamel case to classes names, variables, and so on.
+- Table name like the application context (using the code-first approach)
 
 ## Database Conventions
 To avoid problems with names and the pattern of tables, I conventioned that all tables have a minimum structure, that you can see in the imagem below:
