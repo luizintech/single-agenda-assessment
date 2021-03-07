@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "web-portal"
+    }
+  },
+  "defaultProject": "web-portal",
+  "cli": {
+    "analytics": "939389e8-8da3-4275-9d05-94d8ff5c3b82"
+  }
 }
