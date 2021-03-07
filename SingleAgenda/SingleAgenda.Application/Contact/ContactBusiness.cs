@@ -28,16 +28,36 @@ namespace SingleAgenda.Application.Contact
 
         #region Public Methods
 
-        public async Task<IEnumerable<Person>> ListAllAsync()
+        public async Task<IEnumerable<PersonDto>> ListAllAsync()
         {
             return await this.dbContext.Persons
+                .Select(p => new PersonDto()
+                {
+                    Birthday = p.Birthday,
+                    Document = p.Document,
+                    Gender = p.Gender,
+                    Id = p.Id,
+                    Name = p.Name,
+                    PersonType = p.PersonType,
+                    TradeName = p.TradeName
+                })
                 .ToArrayAsync();
         }
 
-        public async Task<Person> GetByIdAsync(int id)
+        public async Task<PersonDto> GetByIdAsync(int id)
         {
             return await this.dbContext.Persons
                 .Where(p => p.Id == id)
+                .Select(p => new PersonDto()
+                {
+                    Birthday = p.Birthday,
+                    Document = p.Document,
+                    Gender = p.Gender,
+                    Id = p.Id,
+                    Name = p.Name,
+                    PersonType = p.PersonType,
+                    TradeName = p.TradeName
+                })
                 .SingleOrDefaultAsync();
         }
 
