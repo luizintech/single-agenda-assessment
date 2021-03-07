@@ -20,3 +20,7 @@ button.login {
 mat-form-field, .login-form {
     width: 45vw; 
 }
+
+.email, .password {
+    width: 100%;
+}
