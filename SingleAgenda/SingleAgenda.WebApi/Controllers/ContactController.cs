@@ -11,22 +11,22 @@ using System.Threading.Tasks;
 
 namespace SingleAgenda.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/contacts")]
     [ApiController]
     public class ContactController 
         : ControllerBase
     {
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
-        public ActionResult<IEnumerable<PersonDto>> Search(
+        public IEnumerable<PersonDto> Search(
             [FromServices] ContactBusiness contactBusiness
         )
         {
-            return this.Ok(contactBusiness.ListAllAsync());
+            return contactBusiness.ListAllAsync();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonDto>> GetByIdAsync(
             [FromRoute] int id,
@@ -35,7 +35,7 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.GetByIdAsync(id);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult<ResultDto>> CreateAsync(
             [FromBody] PersonDto person,
@@ -47,7 +47,7 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.CreateAsync(person);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultDto>> UpdateAsync(
             [FromRoute] int id,
@@ -61,7 +61,7 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.UpdateAsync(person);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<ResultDto>> DeleteAsync(
             [FromRoute] int id,

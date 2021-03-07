@@ -15,7 +15,7 @@ namespace SingleAgenda.Dtos.Contact
         public PersonType PersonType { get; set; }
         public string Document { get; set; }
 
-        public List<AddressDto> Addresses { get; set; }
+        public List<AddressDto> Addresses { get; set; } = new List<AddressDto>();
 
         public string TradeName { get; set; }
         public DateTime Birthday { get; set; }

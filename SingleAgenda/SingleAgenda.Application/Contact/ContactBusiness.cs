@@ -28,9 +28,9 @@ namespace SingleAgenda.Application.Contact
 
         #region Public Methods
 
-        public async Task<IEnumerable<PersonDto>> ListAllAsync()
+        public IEnumerable<PersonDto> ListAllAsync()
         {
-            return await this.dbContext.Persons
+            return this.dbContext.Persons
                 .Select(p => new PersonDto()
                 {
                     Birthday = p.Birthday,
@@ -41,7 +41,7 @@ namespace SingleAgenda.Application.Contact
                     PersonType = p.PersonType,
                     TradeName = p.TradeName
                 })
-                .ToArrayAsync();
+                .ToArray();
         }
 
         public async Task<PersonDto> GetByIdAsync(int id)

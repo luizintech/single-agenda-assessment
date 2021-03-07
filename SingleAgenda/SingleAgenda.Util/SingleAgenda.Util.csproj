@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SingleAgenda.Application\SingleAgenda.Application.csproj" />
     <ProjectReference Include="..\SingleAgenda.Entities\SingleAgenda.Entities.csproj" />
     <ProjectReference Include="..\SingleAgenda.Infra\SingleAgenda.Infra.csproj" />
   </ItemGroup>

@@ -17,10 +17,10 @@ namespace SingleAgenda.Infra.Base
 
         #region Constructors
 
-        public RepositoryBase(IServiceProvider serviceProvider)
-            : this(new SingleAgendaDbContext(serviceProvider))
-        {
-        }
+        //public RepositoryBase(IServiceProvider serviceProvider)
+        //    : this(new SingleAgendaDbContext(serviceProvider))
+        //{
+        //}
         
         public RepositoryBase(SingleAgendaDbContext context)
         {

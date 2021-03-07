@@ -17,15 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Entities", "Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.DataAccess.Tests", "SingleAgenda.DataAccess.Tests\SingleAgenda.DataAccess.Tests.csproj", "{7CC03531-AC51-4952-8DB9-BFD1766FD95D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Infra", "SingleAgenda.Infra\SingleAgenda.Infra.csproj", "{799C9399-BD0E-45C2-9CA5-9D6A815073BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Infra", "SingleAgenda.Infra\SingleAgenda.Infra.csproj", "{799C9399-BD0E-45C2-9CA5-9D6A815073BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Util", "SingleAgenda.Util\SingleAgenda.Util.csproj", "{15151FFC-F549-47B4-AC1E-51EDAFFC6933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Util", "SingleAgenda.Util\SingleAgenda.Util.csproj", "{15151FFC-F549-47B4-AC1E-51EDAFFC6933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Dtos", "SingleAgenda.Dtos\SingleAgenda.Dtos.csproj", "{A021BDAD-F7DE-435F-A886-B806C167ED8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Dtos", "SingleAgenda.Dtos\SingleAgenda.Dtos.csproj", "{A021BDAD-F7DE-435F-A886-B806C167ED8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.Application", "SingleAgenda.Application\SingleAgenda.Application.csproj", "{4638C82A-C687-4C99-8CB7-322EBEFAEDD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Application", "SingleAgenda.Application\SingleAgenda.Application.csproj", "{4638C82A-C687-4C99-8CB7-322EBEFAEDD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleAgenda.WebApi", "SingleAgenda.WebApi\SingleAgenda.WebApi.csproj", "{9675AFFF-51C3-4731-A11A-EE77350B9FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.WebApi", "SingleAgenda.WebApi\SingleAgenda.WebApi.csproj", "{9675AFFF-51C3-4731-A11A-EE77350B9FE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

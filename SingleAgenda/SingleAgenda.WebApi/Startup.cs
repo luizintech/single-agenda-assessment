@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SingleAgenda.Infra.Configuration;
+using SingleAgenda.Util.Application;
 using SingleAgenda.Util.Data;
 using System;
 using System.Collections.Generic;
@@ -32,12 +33,16 @@ namespace SingleAgenda.WebApi
 
             services.AddDbContext<SingleAgendaDbContext>(this.Configuration, "DefaultConnection");
 
-            services.AddScoped<DbContext, SingleAgendaDbContext>();
+            //services.AddScoped<DbContext, SingleAgendaDbContext>();
 
-            services.AddDbContext<DbContext>(option =>
-                option.UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString()));
+            //services.AddDbContext<DbContext>(option =>
+            //    option.UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString()));
 
             services.AddControllers();
+            services.AddBusiness(this.Configuration);
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

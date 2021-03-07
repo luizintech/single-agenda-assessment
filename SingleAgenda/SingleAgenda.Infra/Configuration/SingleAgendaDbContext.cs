@@ -19,25 +19,25 @@ namespace SingleAgenda.Infra.Configuration
 
         #region Constructors
 
-        protected SingleAgendaDbContext()
-        {
-        }
+        //protected SingleAgendaDbContext()
+        //{
+        //}
 
-        public SingleAgendaDbContext(IServiceProvider serviceProvider)
-        {
-            this.serviceProvider = serviceProvider;
-        }
+        //public SingleAgendaDbContext(IServiceProvider serviceProvider)
+        //{
+        //    this.serviceProvider = serviceProvider;
+        //}
 
         public SingleAgendaDbContext(DbContextOptions options) : base(options)
         {
         }
 
-        public SingleAgendaDbContext(DbContextOptions<SingleAgendaDbContext> options,
-            IServiceProvider serviceProvider)
-            : base(options)
-        {
-            this.serviceProvider = serviceProvider;
-        }
+        //public SingleAgendaDbContext(DbContextOptions<SingleAgendaDbContext> options,
+        //    IServiceProvider serviceProvider)
+        //    : base(options)
+        //{
+        //    this.serviceProvider = serviceProvider;
+        //}
 
         #endregion
 
