@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginFormComponent } from './components/login-form/login-form.component';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
@@ -21,7 +20,6 @@ import { LoginComponent } from './pages/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
     MenuNavComponent,
     PrimaryToolbarComponent,
     routingComponent,

@@ -1,3 +1,20 @@
 <div class="container mat-app-background">
-    <app-login-form class="login-form"></app-login-form>
+    <div class="container">
+        <form>
+            <mat-form-field appearance="fill" class="email">
+                <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error> -->
+            <mat-form-field appearance="fill" class="password">
+                <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+            <button mat-raised-button class="login" 
+                mat-raised-button color="primary">Login</button>
+        </form>
+    </div>
 </div>
