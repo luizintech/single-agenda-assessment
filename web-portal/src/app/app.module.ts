@@ -8,21 +8,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { NaturalPersonComponent } from './pages/natural-person/natural-person.component';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    NaturalPersonComponent,
     MenuNavComponent,
-    PrimaryToolbarComponent
+    PrimaryToolbarComponent,
+    routingComponent,
+    ContactsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-to
     MatFormFieldModule,
     MatIconModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
