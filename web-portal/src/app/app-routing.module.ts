@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-person-edit.component';
+import { LegalPersonEditComponent } from './pages/legal-person-edit/legal-person-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,5 +23,6 @@ export const routingComponent = [
   HomeComponent, 
   LoginComponent, 
   ContactsComponent, 
-  NaturalPersonEditComponent
+  NaturalPersonEditComponent,
+  LegalPersonEditComponent
 ];

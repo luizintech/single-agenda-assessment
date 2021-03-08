@@ -43,6 +43,7 @@ import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-
 
 import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LegalPersonEditComponent } from './pages/legal-person-edit/legal-person-edit.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PrimaryToolbarComponent,
     routingComponent,
     NaturalPersonEditComponent,
+    LegalPersonEditComponent,
   ],
   imports: [
     BrowserModule,

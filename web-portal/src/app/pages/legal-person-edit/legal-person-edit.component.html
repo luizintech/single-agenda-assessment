@@ -1,0 +1,94 @@
+<div class="form-container">
+    <form (ngSubmit)="save()"
+        [formGroup]="editForm" >
+        <!-- name -->
+        <div class="form-group row">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Company Name(*):</mat-label>
+               <input type="text" matInput formControlName="name" [(ngModel)]="name"
+                class="form-control"> 
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['name'].invalid && 
+                    (editForm.controls['name'].dirty 
+                        || editForm.controls['name'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['name'].errors != null 
+                    && editForm.controls['name'].errors.required">
+                    Company Name is required
+                </div>
+            </div>
+        </div>
+        
+        <!-- tradeName -->
+        <div class="form-group row">
+            <mat-form-field appearance="fill" class="tradeName">
+                <mat-label>Trade Name(*):</mat-label>
+               <input type="text" matInput formControlName="tradeName" [(ngModel)]="tradeName"
+                class="form-control"> 
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['tradeName'].invalid && 
+                    (editForm.controls['tradeName'].dirty 
+                        || editForm.controls['tradeName'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['tradeName'].errors != null 
+                    && editForm.controls['tradeName'].errors.required">
+                    Trade Name is required
+                </div>
+            </div>
+        </div>
+
+        <!-- email -->
+        <div class="form-group row">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Email(*):</mat-label>
+                <input type="text" formControlName="email" [(ngModel)]="email"
+                    matInput class="form-control">
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['email'].invalid && 
+                    (editForm.controls['email'].dirty 
+                        || editForm.controls['email'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['email'].errors != null 
+                    && editForm.controls['email'].errors.required">
+                    Email is required
+                </div>
+            </div>
+        </div>
+
+       <!-- document -->
+       <div class="row">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>CNPJ(*):</mat-label>
+                <input matInput type="text" formControlName="document" [(ngModel)]="document"
+                    class="form-control">
+            </mat-form-field>
+            <div *ngIf="editForm.controls['document'].invalid && 
+                    (editForm.controls['document'].dirty 
+                        || editForm.controls['document'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['document'].errors != null 
+                    && editForm.controls['document'].errors.required">
+                    CNPJ is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <button type="submit" 
+                class="btn btn-primary w100pc">
+                Save
+            </button>
+            <button type="button" (click)="cancel()"
+                class="btn btn-primary w100pc">
+                Cancel
+            </button>
+        </div>
+    </form> 
+</div>
