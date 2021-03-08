@@ -49,43 +49,28 @@
         </table>
     </div>
 
-    <div *ngIf="editing">
-        <app-natural-person-edit></app-natural-person-edit>
+    <div *ngIf="editing && personType == 0">
+        
+        <mat-card class="single-dashboard-card">
+            <mat-card-content>
+                <p>
+                    <button mat-raised-button color="primary" (click)="chooseType(1)">Natural Person</button>
+                </p>
+            </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="single-dashboard-card">
+            <mat-card-content>
+                <p>
+                    <button mat-raised-button color="primary" (click)="chooseType(2)">Legal Person</button>
+                </p>
+            </mat-card-content>
+        </mat-card>
+
     </div>
 
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngIf="contacts.length == 0">
-                <td colspan="7">There's no contacts registred.</td>
-            </tr>
-            <tr *ngFor="let contact of contacts">
-                <th>{{contact.id}}</th>
-                <th>{{contact.personType}}</th>
-                <th>{{contact.name}}</th>
-                <th>{{contact.email}}</th>
-                <th>{{contact.createdAt}}</th>
-                <th>
-                    <span class="danger-msg" *ngIf="contact.removed">
-                        Deleted
-                    </span>
-                </th>
-                <th>
-                    <button>edit</button>
-                    <button>remove</button>
-                </th>
-            </tr>
-        </tbody>
-    </table> -->
+    <div *ngIf="editing && personType == 1">
+        <app-natural-person-edit></app-natural-person-edit>
+    </div>
 
 </div>

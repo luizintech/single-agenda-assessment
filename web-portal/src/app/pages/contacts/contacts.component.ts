@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 import { Person } from 'src/app/core/model/contacts/person';
@@ -13,6 +13,7 @@ export class ContactsComponent implements OnInit {
 
   public contacts: Person[] = [];
   public editing: boolean = false;
+  public personType: number = 0;
 
   constructor(
     private authManager: AuthManager,
@@ -29,10 +30,16 @@ export class ContactsComponent implements OnInit {
     });
 
     this.editing = false;
+    this.personType = 0;
   }
 
   public new() {
     this.editing = true;
+  }
+
+  chooseType(choosed: number) {
+    this.personType = choosed;
+    console.log(this.personType);
   }
 
   public personTypeTranslate(type: Number) {

@@ -51,6 +51,7 @@ export class NaturalPersonEditComponent implements OnInit {
         if (result.success) {
           alert('Person edited with success!');
           this.router.navigate(['contacts']);
+          window.location.reload();
         } else {
           alert(result.messages);
         }
@@ -85,6 +86,10 @@ export class NaturalPersonEditComponent implements OnInit {
     }
 
     return naturalPerson;
+  }
+
+  cancel() {
+    window.location.reload();
   }
 
 }
