@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
@@ -39,6 +40,7 @@ import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatDividerModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

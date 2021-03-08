@@ -36,4 +36,10 @@ export class AuthManager {
             (this.userName != '') && (this.userName != undefined));
     }
 
+    public abandom() {
+        localStorage.removeItem("__sm_");
+        localStorage.removeItem("__nmUser_");
+        localStorage.removeItem("__mailUser_");
+    }
+
 }

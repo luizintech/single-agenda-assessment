@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 
 @Component({
   selector: 'app-menu-nav',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authManager: AuthManager,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.authManager.abandom();
+    this.router.navigate(['login']);
+    window.location.reload();
   }
 
 }

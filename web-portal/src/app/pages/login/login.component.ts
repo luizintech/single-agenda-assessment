@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           // console.log(result);
           this.authManager.setSessionInfo(result);
           this.router.navigate(['home']);
+          window.location.reload();
         } else {
           alert(result.messages);
         }
