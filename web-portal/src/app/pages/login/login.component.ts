@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthMessage } from 'src/app/core/model/messages/authMessage';
+import { User } from 'src/app/core/model/userAndRoles/user';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,11 @@ export class LoginComponent implements OnInit {
   public email: string = "";
   public password: string = "";
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) { 
     this.authForm = this.formBuilder.group({
       email:  ['', Validators.required], 
       password:  ['', Validators.required]                
@@ -24,32 +32,26 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('login')
     if(this.authForm.valid){
-      // var produto = this.populateProduto();
-      // this.produtoTransacaoService.add(produto).subscribe((resultado: Resultado) => {
-      //   if (resultado.Sucesso) {
-      //     alert('Aplicação incluida com sucesso!');
-      //     this.router.navigate(['dashboard']);
-      //   } else {
-      //     alert('Possíveis erros ocorreram ao tentar incluir um produto. \r\n' 
-      //       + resultado.Mensagens);
-      //   }
-      // });
-      
+      var user = this.populateUser();
+      this.authService.doLogin(user).subscribe((result: AuthMessage) => {
+        if (result.success) {
+          console.log(result);
+          this.router.navigate(['home']);
+        } else {
+          alert(result.messages);
+        }
+      });
     } else {
-      // alert('Preencha corretamente todos os campos.')
+      
     }
   }
 
-  // private populate(): Produto {
-  //   var produto = new Produto();
-  //   produto.Id = this.produtoId;
-  //   produto.PrecoUnitario = this.preco;
-  //   produto.Qtde = this.qtde;
-  //   produto.TaxaCorretagem = this.taxaCorretagem;
-  //   produto.DataInicio = this.dataInicio;
-  //   return produto;
-  // }
+  private populateUser(): User {
+    var user = new User();
+    user.email = this.email;
+    user.password = this.password;
+    return user;
+  }
 
 }
