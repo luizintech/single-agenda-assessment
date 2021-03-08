@@ -155,6 +155,7 @@ namespace SingleAgenda.Application.Contact
                 Document = dto.Document,
                 Gender = dto.Gender,
                 Name = dto.Name,
+                Email = dto.Email,
                 PersonType = dto.PersonType,
                 Id = dto.Id,
                 TradeName = dto.TradeName,
