@@ -38,11 +38,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.authForm.valid){
-      console.log(this.authForm);
       var user = this.populateUser();
       this.authService.doLogin(user).subscribe((result: AuthMessage) => {
         if (result.success) {
-          // console.log(result);
           this.authManager.setSessionInfo(result);
           this.router.navigate(['home']);
           window.location.reload();

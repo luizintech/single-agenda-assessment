@@ -16,7 +16,6 @@ export class AuthService extends BaseService {
 
   public doLogin(user: User): Observable<any> {
     var headers = {'content-Type': 'application/json'}
-    console.log(user);
     return this.http.post(`${environment.baseApi}/${this._defaultMethod}`, 
       user, 
       { 'headers': headers }
