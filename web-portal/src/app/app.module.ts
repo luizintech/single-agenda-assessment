@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, LowerCasePipe, PercentPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';  
 import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,13 +20,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
+import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-person-edit.component';
+
+import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuNavComponent,
     PrimaryToolbarComponent,
-    routingComponent
+    routingComponent,
+    NaturalPersonEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +49,19 @@ import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
     ReactiveFormsModule,
     HttpClientModule
   ],
+  exports: [
+  ],
   providers: [
-    AuthManager
+    AuthManager,
+    EnumDisplayNamePipe,
+    CommonModule,
+    CurrencyPipe,
+    DatePipe,
+    DecimalPipe,
+    LowerCasePipe, 
+    PercentPipe, 
+    TitleCasePipe, 
+    UpperCasePipe
   ],
   bootstrap: [AppComponent]
 })

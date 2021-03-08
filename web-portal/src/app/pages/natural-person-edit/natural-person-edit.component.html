@@ -1,0 +1,105 @@
+<div class="form-container">
+    <form (ngSubmit)="save()"
+        [formGroup]="editForm" >
+        <!-- name -->
+        <div class="form-group row">
+            <label class="control-label">Name(*):</label>
+            <input type="text" formControlName="name" [(ngModel)]="name"
+                class="form-control">
+            <div *ngIf="editForm.controls['name'].invalid && 
+                    (editForm.controls['name'].dirty 
+                        || editForm.controls['name'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['name'].errors != null 
+                    && editForm.controls['name'].errors.required">
+                    Name is required
+                </div>
+            </div>
+        </div>
+
+        <!-- email -->
+        <div class="form-group row">
+            <label class="control-label">Email(*):</label>
+            <input type="text" formControlName="email" [(ngModel)]="email"
+                class="form-control">
+            <div *ngIf="editForm.controls['email'].invalid && 
+                    (editForm.controls['email'].dirty 
+                        || editForm.controls['email'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['email'].errors != null 
+                    && editForm.controls['email'].errors.required">
+                    Email is required
+                </div>
+            </div>
+        </div>
+
+        <!-- gender -->
+        <div class="form-group row">
+            <label class="control-label">Gender(*):</label>
+            <select formControlName="gender" [(ngModel)]="gender"
+                class="form-control">
+                <option value="">(Choose)</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="NotBinary">Not Binary</option>
+            </select>
+            <div *ngIf="editForm.controls['gender'].invalid && 
+                    (editForm.controls['gender'].dirty 
+                        || editForm.controls['gender'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['gender'].errors != null 
+                    && editForm.controls['gender'].errors.required">
+                    Gender is required
+                </div>
+            </div>
+        </div>
+
+       <!-- document -->
+       <div class="form-group row">
+            <label class="control-label">Document(*):</label>
+            <input type="text" formControlName="document" [(ngModel)]="document"
+                class="form-control">
+            <div *ngIf="editForm.controls['document'].invalid && 
+                    (editForm.controls['document'].dirty 
+                        || editForm.controls['document'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['document'].errors != null 
+                    && editForm.controls['document'].errors.required">
+                    Document is required
+                </div>
+            </div>
+        </div>
+        
+       <!-- bithday -->
+       <div class="form-group row">
+            <label class="control-label">Birthday(*):</label>
+            <input type="text" formControlName="birthday" [(ngModel)]="birthday"
+                class="form-control">
+            <div *ngIf="editForm.controls['birthday'].invalid && 
+                    (editForm.controls['birthday'].dirty 
+                        || editForm.controls['birthday'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['birthday'].errors != null 
+                    && editForm.controls['birthday'].errors.required">
+                    Birthday is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <button type="submit" 
+                class="btn btn-primary w100pc">
+                Save
+            </button>
+            <button type="button" 
+                class="btn btn-primary w100pc">
+                Cancel
+            </button>
+        </div>
+    </form> 
+</div>

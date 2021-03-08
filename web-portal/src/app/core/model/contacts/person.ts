@@ -10,6 +10,7 @@ export class Person extends BaseModel {
     }
 
     public name: string = "";
+    public email: string = "";
     public personType: PersonType; 
     public document: string = "";
     public tradeName: string = "";

@@ -19,6 +19,10 @@ namespace SingleAgenda.Entities.Contact
         [Required]
         public PersonType PersonType { get; set; }
 
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        public string Email { get; set; }
+
         /// <summary>
         /// The value of CPF / CNPJ
         /// </summary>
