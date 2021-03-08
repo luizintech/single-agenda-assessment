@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Configuration;
+using SingleAgenda.Entities.UsersAndRoles;
 
 namespace SingleAgenda.Infra.Configuration
 {
@@ -43,6 +44,7 @@ namespace SingleAgenda.Infra.Configuration
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

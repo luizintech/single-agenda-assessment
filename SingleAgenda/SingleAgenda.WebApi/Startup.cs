@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SingleAgenda.Infra.Configuration;
 using SingleAgenda.Util.Application;
 using SingleAgenda.Util.Data;
+using SingleAgenda.Util.Security;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -43,6 +44,8 @@ namespace SingleAgenda.WebApi
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +66,16 @@ namespace SingleAgenda.WebApi
             {
                 endpoints.MapControllers();
             });
+            
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
+                dbInitializer.Initialize();
+                dbInitializer.SeedData();
+            }
+
+            app.UseMiddleware<JwtMiddleware>();
         }
     }
 }

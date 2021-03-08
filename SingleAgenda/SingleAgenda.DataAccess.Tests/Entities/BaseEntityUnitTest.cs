@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using SingleAgenda.Entities.UsersAndRoles;
 
 namespace SingleAgenda.DataAccess.Tests.Entities
 {
@@ -32,6 +33,7 @@ namespace SingleAgenda.DataAccess.Tests.Entities
             TestThePrimaryKeyOfEntityModel(typeof(EntityBase));
             TestThePrimaryKeyOfEntityModel(typeof(Person));
             TestThePrimaryKeyOfEntityModel(typeof(Address));
+            TestThePrimaryKeyOfEntityModel(typeof(User));
         }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace SingleAgenda.DataAccess.Tests.Entities
             TestTheCreatedDateFieldRequirement(typeof(EntityBase));
             TestTheCreatedDateFieldRequirement(typeof(Person));
             TestTheCreatedDateFieldRequirement(typeof(Address));
+            TestTheCreatedDateFieldRequirement(typeof(User));
         }
 
         /// <summary>
@@ -56,6 +59,7 @@ namespace SingleAgenda.DataAccess.Tests.Entities
             TestTheLogicalExclusionRequirement(typeof(EntityBase));
             TestTheLogicalExclusionRequirement(typeof(Person));
             TestTheLogicalExclusionRequirement(typeof(Address));
+            TestTheLogicalExclusionRequirement(typeof(User));
         }
 
         #region Private methods
