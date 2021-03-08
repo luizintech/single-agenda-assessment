@@ -1,1 +1,40 @@
-<p>contacts works!</p>
+<app-primary-toolbar></app-primary-toolbar>
+
+<div class="container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="contacts.length == 0">
+                <td colspan="7">There's no contacts registred.</td>
+            </tr>
+            <tr *ngFor="let contact of contacts">
+                <th>{{contact.id}}</th>
+                <th>{{contact.personType}}</th>
+                <th>{{contact.name}}</th>
+                <th>{{contact.email}}</th>
+                <th>{{contact.createdAt}}</th>
+                <th>
+                    <span class="danger-msg" *ngIf="contact.removed">
+                        Deleted
+                    </span>
+                </th>
+                <th>
+                    <button>edit</button>
+                    <button>remove</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

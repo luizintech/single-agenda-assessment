@@ -18,8 +18,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
-import { ContactsComponent } from './pages/contacts/contacts.component';
-import { LoginComponent } from './pages/login/login.component';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 
 @NgModule({
@@ -27,9 +25,7 @@ import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
     AppComponent,
     MenuNavComponent,
     PrimaryToolbarComponent,
-    routingComponent,
-    ContactsComponent,
-    LoginComponent
+    routingComponent
   ],
   imports: [
     BrowserModule,
