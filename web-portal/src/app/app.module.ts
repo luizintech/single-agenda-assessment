@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
@@ -41,6 +42,7 @@ import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
     MatMenuModule,
     MatToolbarModule,
     MatDividerModule,
+    MatCardModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
