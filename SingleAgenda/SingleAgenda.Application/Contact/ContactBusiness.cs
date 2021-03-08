@@ -39,7 +39,10 @@ namespace SingleAgenda.Application.Contact
                     Id = p.Id,
                     Name = p.Name,
                     PersonType = p.PersonType,
-                    TradeName = p.TradeName
+                    TradeName = p.TradeName,
+                    Email = p.Email,
+                    CreatedAt = p.CreatedAt,
+                    Removed = p.Removed
                 })
                 .ToArray();
         }
@@ -56,7 +59,10 @@ namespace SingleAgenda.Application.Contact
                     Id = p.Id,
                     Name = p.Name,
                     PersonType = p.PersonType,
-                    TradeName = p.TradeName
+                    TradeName = p.TradeName,
+                    Email = p.Email,
+                    CreatedAt = p.CreatedAt,
+                    Removed = p.Removed
                 })
                 .SingleOrDefaultAsync();
         }

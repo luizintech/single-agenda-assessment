@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule  } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
 
 const MATERIAL = [
   MatButtonModule,
@@ -25,7 +26,8 @@ const MATERIAL = [
   MatDividerModule,
   MatCardModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatTableModule
 ]
 
 //#endregion

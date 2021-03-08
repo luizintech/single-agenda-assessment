@@ -12,6 +12,7 @@ import { ContactService } from 'src/app/core/services/contact.service';
 export class ContactsComponent implements OnInit {
 
   public contacts: Person[] = [];
+  public editing: boolean = false;
 
   constructor(
     private authManager: AuthManager,
@@ -26,6 +27,28 @@ export class ContactsComponent implements OnInit {
     this.contactService.listAll().subscribe(data => {
       this.contacts = data;
     });
+
+    this.editing = false;
+  }
+
+  public new() {
+    this.editing = true;
+  }
+
+  public personTypeTranslate(type: Number) {
+    let translated = "";
+
+    switch (type) {
+      case 1:
+        translated = "Natural";
+        break;
+
+      case 2:
+        translated = "Legal";
+        break;
+    }
+
+    return translated;
   }
 
 }

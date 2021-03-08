@@ -22,6 +22,9 @@ namespace SingleAgenda.Dtos.Contact
         public DateTime Birthday { get; set; }
         public Gender Gender { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public bool Removed { get; set; }
+
         public static readonly Expression<Func<PersonDto, Person>> ToEntity =
             p => new Person()
             {

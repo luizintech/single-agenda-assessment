@@ -1,8 +1,59 @@
 <app-primary-toolbar></app-primary-toolbar>
 
+<br>
 <div class="container">
 
-    <table>
+    <div *ngIf="!editing">
+        <button mat-raised-button class="new" 
+            mat-raised-button color="primary" (click)="new()">New</button>
+        <br>
+        <table mat-table [dataSource]="contacts" class="mat-elevation-z8">
+            <!-- Id -->
+            <ng-container matColumnDef="Id">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Type -->
+            <ng-container matColumnDef="Type">
+                <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{personTypeTranslate(row.personType)}} </mat-cell>
+            </ng-container>
+
+            <!-- Name -->
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+            </ng-container>
+
+            <!-- Email -->
+            <ng-container matColumnDef="Email">
+                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+            </ng-container>
+
+            <!-- CreatedAt -->
+            <ng-container matColumnDef="CreatedAt">
+                <mat-header-cell *matHeaderCellDef> Created At </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    {{row.createdAt}} 
+                </mat-cell>
+            </ng-container>
+
+            <!-- button -->
+            <!-- button -->
+
+            <!-- Header and Row Declarations -->
+            <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'CreatedAt']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'CreatedAt']"></mat-row>
+        </table>
+    </div>
+
+    <div *ngIf="editing">
+        <app-natural-person-edit></app-natural-person-edit>
+    </div>
+
+    <!-- <table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,6 +86,6 @@
                 </th>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 
 </div>
