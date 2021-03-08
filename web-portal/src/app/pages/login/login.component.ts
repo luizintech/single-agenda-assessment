@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthMessage } from 'src/app/core/model/messages/authMessage';
 import { User } from 'src/app/core/model/userAndRoles/user';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authManager: AuthManager
   ) { 
-     
   }
 
   ngOnInit(): void {
@@ -30,6 +31,9 @@ export class LoginComponent implements OnInit {
       email:  ['', Validators.required], 
       password:  ['', Validators.required]                
     });
+
+    if (this.authManager.isValid())
+      this.router.navigate(['home']);
   }
 
   login() {
@@ -38,7 +42,8 @@ export class LoginComponent implements OnInit {
       var user = this.populateUser();
       this.authService.doLogin(user).subscribe((result: AuthMessage) => {
         if (result.success) {
-          console.log(result);
+          // console.log(result);
+          this.authManager.setSessionInfo(result);
           this.router.navigate(['home']);
         } else {
           alert(result.messages);

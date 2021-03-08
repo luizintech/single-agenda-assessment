@@ -50,6 +50,12 @@ namespace SingleAgenda.Application.UsersAndRoles
                     };
                     var token = tokenHandler.CreateToken(tokenDescriptor);
                     result.Token = tokenHandler.WriteToken(token);
+                    result.UserInfo = new UserDto()
+                    {
+                        Name = userSearch.Name,
+                        Email = userSearch.Email,
+                        Id = user.Id
+                    };
                     result.Success = true;
                 }
                 else

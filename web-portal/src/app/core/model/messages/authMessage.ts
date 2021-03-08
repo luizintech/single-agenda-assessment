@@ -1,3 +1,4 @@
+import { User } from "../userAndRoles/user";
 import { Result } from "./result";
 
 export class AuthMessage extends Result {
@@ -7,5 +8,6 @@ export class AuthMessage extends Result {
     }
 
     public token: string = "";
+    public userInfo: User = new User();
 
 }

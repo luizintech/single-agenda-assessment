@@ -18,6 +18,7 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { LoginComponent } from './pages/login/login.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthManager
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
