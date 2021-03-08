@@ -16,6 +16,6 @@ export class Person extends BaseModel {
     public tradeName: string = "";
     public birthday: Date;
     public gender: Gender;
-    public adresses: Address[] = [];
+    public addresses: Address[] = [];
 
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Gender } from 'src/app/core/model/contacts/gender';
 import { Person } from 'src/app/core/model/contacts/person';
 import { PersonType } from 'src/app/core/model/contacts/person-type';
+import { Address } from 'src/app/core/model/location/address';
 import { Result } from 'src/app/core/model/messages/result';
 import { ContactService } from 'src/app/core/services/contact.service';
 
@@ -22,6 +23,12 @@ export class NaturalPersonEditComponent implements OnInit {
   public document: string = "";
   public birthday: Date;
 
+  public zipcode1: string = "";
+  public description1: string = "";
+  public city1: string = "";
+  public state1: string = "";
+  public country1: string = "";
+
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
@@ -32,7 +39,12 @@ export class NaturalPersonEditComponent implements OnInit {
       email:  ['', Validators.required], 
       gender:  ['', Validators.required],
       document: ['', Validators.required],
-      birthday: ['', Validators.required]              
+      birthday: ['', Validators.required],
+      zipcode1: [''],
+      description1: [''],
+      city1: [''],
+      state1: [''],
+      country1: ['']         
     });
   }
 
@@ -83,6 +95,16 @@ export class NaturalPersonEditComponent implements OnInit {
 
       default:
         break;
+    }
+
+    if (this.description1 != "") {
+      var address1 = new Address();
+      address1.country = this.country1;
+      address1.state = this.state1;
+      address1.city = this.city1;
+      address1.description = this.description1;
+      address1.zipCode = this.zipcode1;
+      naturalPerson.addresses.push(address1);
     }
 
     return naturalPerson;
