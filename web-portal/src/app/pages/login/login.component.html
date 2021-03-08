@@ -2,7 +2,8 @@
     <div class="container">
         <form (ngSubmit)="login()" [formGroup]="authForm">
             <mat-form-field appearance="fill" class="email">
-                <input type="email" matInput placeholder="Email" formControlName="email" />
+                <input type="email" matInput placeholder="Email" 
+                    formControlName="email" [(ngModel)]="email" />
             </mat-form-field>
             <div *ngIf="authForm.controls['email'].invalid && 
                     (authForm.controls['email'].dirty 
@@ -16,10 +17,11 @@
             </div>
             
             <mat-form-field appearance="fill" class="password">
-                <input type="password" matInput placeholder="Password" formControlName="password" />
+                <input type="password" matInput placeholder="Password" 
+                    formControlName="password" [(ngModel)]="password" />
             </mat-form-field>
             <button mat-raised-button class="login" 
-                mat-raised-button color="primary">Login</button>
+                mat-raised-button color="primary" [disabled]="!authForm.valid">Login</button>
         </form>
     </div>
 </div>

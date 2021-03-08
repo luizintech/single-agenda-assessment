@@ -22,17 +22,19 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) { 
-    this.authForm = this.formBuilder.group({
-      email:  ['', Validators.required], 
-      password:  ['', Validators.required]                
-    }); 
+     
   }
 
   ngOnInit(): void {
+    this.authForm = this.formBuilder.group({
+      email:  ['', Validators.required], 
+      password:  ['', Validators.required]                
+    });
   }
 
   login() {
     if(this.authForm.valid){
+      console.log(this.authForm);
       var user = this.populateUser();
       this.authService.doLogin(user).subscribe((result: AuthMessage) => {
         if (result.success) {
