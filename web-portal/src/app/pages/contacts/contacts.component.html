@@ -60,7 +60,7 @@
                 <md-header-cell *matHeaderCellDef> Actions </md-header-cell>
                 <md-cell *matCellDef="let row" >
                      <button md-raised-button >Edit</button> 
-                     <button md-raised-button (click)="delete(row.id)">Delete</button> 
+                     <button md-raised-button *ngIf="!row.removed" (click)="delete(row.id)">Delete</button> 
                 </md-cell>
             </ng-container> 
 
