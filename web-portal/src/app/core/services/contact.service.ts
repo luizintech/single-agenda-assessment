@@ -15,8 +15,11 @@ export class ContactService extends BaseService {
   }
 
   public listAll(){
-    
     return this.http.get<Person[]>(`${environment.baseApi}/${this._defaultMethod}`);
+  }
+
+  public filterList(showRemoved: boolean){
+    return this.http.get<Person[]>(`${environment.baseApi}/${this._defaultMethod}?showRemoved=${showRemoved}`);
   }
 
   public getById(id: number){

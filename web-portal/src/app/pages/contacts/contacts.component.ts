@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 import { Person } from 'src/app/core/model/contacts/person';
+import { Result } from 'src/app/core/model/messages/result';
 import { ContactService } from 'src/app/core/services/contact.service';
 
 @Component({
@@ -15,11 +17,19 @@ export class ContactsComponent implements OnInit {
   public editing: boolean = false;
   public personType: number = 0;
 
+  public filterForm: FormGroup;
+  public showRemoved: boolean;
+
   constructor(
     private authManager: AuthManager,
     private router: Router,
-    private contactService: ContactService
-  ) { }
+    private contactService: ContactService,
+    private formBuilder: FormBuilder,
+  ) { 
+    this.filterForm = this.formBuilder.group({
+      showRemoved:  ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     if (!this.authManager.isValid())
@@ -39,7 +49,22 @@ export class ContactsComponent implements OnInit {
 
   chooseType(choosed: number) {
     this.personType = choosed;
-    console.log(this.personType);
+  }
+
+  delete(id: number) {
+    let msg = 'Do you really want to remove the person?';
+    if (confirm(msg)) {
+      this.contactService.remove(id).subscribe((result: Result) => {
+        if (result.success) {
+          setTimeout(() => {
+            alert('Person remove success!');
+            window.location.reload();
+          }, 1000);
+        } else {
+          alert(result.messages);
+        }
+      });
+    }
   }
 
   public personTypeTranslate(type: Number) {
@@ -56,6 +81,12 @@ export class ContactsComponent implements OnInit {
     }
 
     return translated;
+  }
+
+  public filter() {
+    this.contactService.filterList(this.showRemoved).subscribe(data => {
+      this.contacts = data;
+    });
   }
 
 }

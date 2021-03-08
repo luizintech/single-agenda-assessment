@@ -4,6 +4,21 @@
 <div class="container">
 
     <div *ngIf="!editing">
+
+        <div class="filter-place">
+            <form (ngSubmit)="filter()" [formGroup]="filterForm">
+                <mat-form-field appearance="fill" class="show-removed">
+                    <mat-label>Show removed:</mat-label>
+                    <select matNativeControl formControlName="showRemoved" 
+                        [(ngModel)]="showRemoved" required>
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </mat-form-field>
+                <button>Apply</button>
+            </form>
+        </div>
+
         <button mat-raised-button class="new" 
             mat-raised-button color="primary" (click)="new()">New</button>
         <br>
@@ -41,11 +56,17 @@
             </ng-container>
 
             <!-- button -->
-            <!-- button -->
+            <ng-container matColumnDef="Actions">
+                <md-header-cell *matHeaderCellDef> Actions </md-header-cell>
+                <md-cell *matCellDef="let row" >
+                     <button md-raised-button >Edit</button> 
+                     <button md-raised-button (click)="delete(row.id)">Delete</button> 
+                </md-cell>
+            </ng-container> 
 
             <!-- Header and Row Declarations -->
-            <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'CreatedAt']"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'CreatedAt']"></mat-row>
+            <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-row>
         </table>
     </div>
 

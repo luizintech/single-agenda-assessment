@@ -20,10 +20,11 @@ namespace SingleAgenda.WebApi.Controllers
         //[Authorize]
         [HttpGet]
         public IEnumerable<PersonDto> Search(
+            [FromQuery] PersonSearchParameter personSearchParameter,
             [FromServices] ContactBusiness contactBusiness
         )
         {
-            return contactBusiness.ListAllAsync();
+            return contactBusiness.ListAllAsync(personSearchParameter);
         }
 
         //[Authorize]

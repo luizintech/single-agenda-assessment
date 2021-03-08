@@ -28,9 +28,10 @@ namespace SingleAgenda.Application.Contact
 
         #region Public Methods
 
-        public IEnumerable<PersonDto> ListAllAsync()
+        public IEnumerable<PersonDto> ListAllAsync(PersonSearchParameter personSearchParameter)
         {
             return this.dbContext.Persons
+                .Where(p => p.Removed == personSearchParameter.ShowRemoved)
                 .Select(p => new PersonDto()
                 {
                     Birthday = p.Birthday,
