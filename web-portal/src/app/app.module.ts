@@ -4,6 +4,7 @@ import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, LowerCasePipe, Perce
 import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+//#region Material Ui Components
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +13,22 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule  } from '@angular/material/datepicker';
+
+const MATERIAL = [
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatDividerModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+]
+
+//#endregion
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
@@ -23,6 +40,7 @@ import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-person-edit.component';
 
 import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,14 +54,7 @@ import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatCardModule,
+    MATERIAL,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

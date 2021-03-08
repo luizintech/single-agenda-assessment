@@ -3,9 +3,12 @@
         [formGroup]="editForm" >
         <!-- name -->
         <div class="form-group row">
-            <label class="control-label">Name(*):</label>
-            <input type="text" formControlName="name" [(ngModel)]="name"
-                class="form-control">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Name(*):</mat-label>
+               <input type="text" matInput formControlName="name" [(ngModel)]="name"
+                class="form-control"> 
+            </mat-form-field>
+            
             <div *ngIf="editForm.controls['name'].invalid && 
                     (editForm.controls['name'].dirty 
                         || editForm.controls['name'].touched)" 
@@ -20,9 +23,12 @@
 
         <!-- email -->
         <div class="form-group row">
-            <label class="control-label">Email(*):</label>
-            <input type="text" formControlName="email" [(ngModel)]="email"
-                class="form-control">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Email(*):</mat-label>
+                <input type="text" formControlName="email" [(ngModel)]="email"
+                    matInput class="form-control">
+            </mat-form-field>
+            
             <div *ngIf="editForm.controls['email'].invalid && 
                     (editForm.controls['email'].dirty 
                         || editForm.controls['email'].touched)" 
@@ -37,14 +43,16 @@
 
         <!-- gender -->
         <div class="form-group row">
-            <label class="control-label">Gender(*):</label>
-            <select formControlName="gender" [(ngModel)]="gender"
-                class="form-control">
-                <option value="">(Choose)</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="NotBinary">Not Binary</option>
-            </select>
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Gender(*):</mat-label>
+                <select matNativeControl required>
+                    <option>(Choose)</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="NotBinary">Not Binary</option>
+                </select>
+            </mat-form-field>
+            
             <div *ngIf="editForm.controls['gender'].invalid && 
                     (editForm.controls['gender'].dirty 
                         || editForm.controls['gender'].touched)" 
@@ -58,27 +66,33 @@
         </div>
 
        <!-- document -->
-       <div class="form-group row">
-            <label class="control-label">Document(*):</label>
-            <input type="text" formControlName="document" [(ngModel)]="document"
+       <div class="row">
+        <mat-form-field appearance="fill" class="email">
+            <mat-label>Document(*):</mat-label>
+            <input matInput type="text" formControlName="document" [(ngModel)]="document"
                 class="form-control">
-            <div *ngIf="editForm.controls['document'].invalid && 
-                    (editForm.controls['document'].dirty 
-                        || editForm.controls['document'].touched)" 
-                class="alert alert-danger"
-            >
-                <div *ngIf="editForm.controls['document'].errors != null 
-                    && editForm.controls['document'].errors.required">
-                    Document is required
-                </div>
+        </mat-form-field>
+        <div *ngIf="editForm.controls['document'].invalid && 
+                (editForm.controls['document'].dirty 
+                    || editForm.controls['document'].touched)" 
+            class="alert alert-danger"
+        >
+            <div *ngIf="editForm.controls['document'].errors != null 
+                && editForm.controls['document'].errors.required">
+                Document is required
             </div>
+        </div>
         </div>
         
        <!-- bithday -->
-       <div class="form-group row">
-            <label class="control-label">Birthday(*):</label>
-            <input type="text" formControlName="birthday" [(ngModel)]="birthday"
-                class="form-control">
+       <div class="row">
+            <mat-form-field appearance="birthday">
+                <mat-label>Birthday(*):</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthday" 
+                    [(ngModel)]="birthday">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
             <div *ngIf="editForm.controls['birthday'].invalid && 
                     (editForm.controls['birthday'].dirty 
                         || editForm.controls['birthday'].touched)" 
