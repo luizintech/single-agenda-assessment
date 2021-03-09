@@ -28,17 +28,17 @@ Its not necessary to execute the Update-Database command to dump the database be
 
 Prerequisites:
 - Latest version of NodeJs  installed (https://nodejs.org/dist/v14.16.0/node-v14.16.0-x64.msi);
-- Angular Cli version 10 (I'll show you how to setup bellow)
+- Angular Cli version 10 (I'll show you how to setup bellow) <br>
 
 ### Installing the Angular Environment
-Let's execute the commands inside the CMD Prompt:
+Let's execute the commands inside the CMD Prompt: <br>
 <code>npm install -g @angular/cli@10.0.2</code>
 
 After all done, execute inside the folder "web-portal" the command:
 <code>npm install</code>
 (this will install all packages and dependences of Angular project
 
-Now, execute the server with the command:
+Now, execute the server with the command: <br>
 <code>ng serve</code>
 
 ![image](https://user-images.githubusercontent.com/1747058/110416837-2842e880-8073-11eb-8288-1ae7399f6a30.png)
@@ -46,7 +46,7 @@ Now, execute the server with the command:
 If all things is ok, you can access the frontend project in the url localhost:4200:
 ![image](https://user-images.githubusercontent.com/1747058/110416891-3db81280-8073-11eb-93a8-054045e2bf3f.png)
 
-Remember, to access the portal, I setup a default user and password:
+Remember, to access the portal, I setup a default user and password: <br>
 User: admin@admin
 Password: 123456
 
