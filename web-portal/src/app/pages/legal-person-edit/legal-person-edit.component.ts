@@ -33,6 +33,9 @@ export class LegalPersonEditComponent implements OnInit {
   public state2: string = "";
   public country2: string = "";
 
+  public additionalAddress1 = false;
+  public additionalAddress2 = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
@@ -63,17 +66,22 @@ export class LegalPersonEditComponent implements OnInit {
   save() {
     if(this.editForm.valid){
       var person = this.populate();
-      this.contactService.create(person).subscribe((result: Result) => {
-        console.log(result);
-        if (result.success) {
-          alert('Legal Person edited with success!');
-          this.router.navigate(['contacts']);
-          window.location.reload();
-        } else {
-          alert(result.messages);
-        }
-      });
-    } else {
+      if (this.additionalAddress1 && !this.validateAddress1()) {
+        alert('Please fill all the fields of address 1 area!');
+      } else if (this.additionalAddress2 && !this.validateAddress2()) {
+        alert('Please fill all the fields of address 2 area!');
+      } else {
+        this.contactService.create(person).subscribe((result: Result) => {
+          console.log(result);
+          if (result.success) {
+            alert('Legal Person edited with success!');
+            this.router.navigate(['contacts']);
+            window.location.reload();
+          } else {
+            alert(result.messages);
+          }
+        });
+      }
     }
   }
 
@@ -110,6 +118,59 @@ export class LegalPersonEditComponent implements OnInit {
 
   cancel() {
     window.location.reload();
+  }
+
+  showAddressArea(area: number) {
+    if (area == 1) {
+      this.additionalAddress1 = true;
+    } else if (area == 2) {
+      if (this.validateAddress1())
+        this.additionalAddress2 = true;
+      else
+        alert('Please fill all the addresses fields before add another one!');
+    }
+  }
+
+  private validateAddress1(): boolean {
+    let valid = true;
+
+    if (this.description1 == "")
+      valid = false;
+
+    if (this.zipcode1 == "")
+      valid = false;
+
+    if (this.state1 == "")
+      valid = false;
+
+    if (this.city1 == "")
+      valid = false;
+
+    if (this.country1 == "")
+      valid = false;
+
+    return valid;
+  }
+
+  private validateAddress2(): boolean {
+    let valid = true;
+
+    if (this.description2 == "")
+      valid = false;
+
+    if (this.zipcode2 == "")
+      valid = false;
+
+    if (this.state2 == "")
+      valid = false;
+
+    if (this.city2 == "")
+      valid = false;
+
+    if (this.country2 == "")
+      valid = false;
+
+    return valid;
   }
 
 }
