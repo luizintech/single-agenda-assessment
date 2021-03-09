@@ -3,15 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-person-edit.component';
 import { LegalPersonEditComponent } from './pages/legal-person-edit/legal-person-edit.component';
+import { NaturalPersonCreateComponent } from './pages/natural-person-create/natural-person-create.component';
+import { PersonEditComponent } from './pages/person-edit/natural-person-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'person/new', component: NaturalPersonEditComponent },
+  { path: 'person/edit/:id', component: PersonEditComponent }
 ];
 
 @NgModule({
@@ -22,7 +23,8 @@ export class AppRoutingModule { }
 export const routingComponent = [ 
   HomeComponent, 
   LoginComponent, 
-  ContactsComponent, 
-  NaturalPersonEditComponent,
-  LegalPersonEditComponent
+  ContactsComponent,
+  LegalPersonEditComponent,
+  NaturalPersonCreateComponent,
+  PersonEditComponent
 ];

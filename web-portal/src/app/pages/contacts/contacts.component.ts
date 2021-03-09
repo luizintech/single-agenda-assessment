@@ -89,4 +89,8 @@ export class ContactsComponent implements OnInit {
     });
   }
 
+  public edit(id: number) {
+    this.router.navigate(['person/edit/' + id]);
+  }
+
 }

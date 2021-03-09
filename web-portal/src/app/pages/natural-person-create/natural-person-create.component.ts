@@ -9,11 +9,11 @@ import { Result } from 'src/app/core/model/messages/result';
 import { ContactService } from 'src/app/core/services/contact.service';
 
 @Component({
-  selector: 'app-natural-person-edit',
-  templateUrl: './natural-person-edit.component.html',
-  styleUrls: ['./natural-person-edit.component.css']
+  selector: 'app-natural-person-create',
+  templateUrl: './natural-person-create.component.html',
+  styleUrls: ['./natural-person-create.component.css']
 })
-export class NaturalPersonEditComponent implements OnInit {
+export class NaturalPersonCreateComponent implements OnInit {
 
   public editForm: FormGroup;
 
@@ -192,5 +192,4 @@ export class NaturalPersonEditComponent implements OnInit {
 
     return valid;
   }
-
 }

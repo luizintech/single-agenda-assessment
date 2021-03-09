@@ -59,8 +59,10 @@
             <ng-container matColumnDef="Actions">
                 <md-header-cell *matHeaderCellDef> Actions </md-header-cell>
                 <md-cell *matCellDef="let row" >
-                     <button md-raised-button >Edit</button> 
-                     <button md-raised-button *ngIf="!row.removed" (click)="delete(row.id)">Delete</button> 
+                     <button type="button" mat-raised-button color="Primary"
+                        (click)="edit(row.id)">Edit</button> 
+                     <button type="button" mat-raised-button color="Warn" *ngIf="!row.removed" 
+                        (click)="delete(row.id)">Delete</button> 
                 </md-cell>
             </ng-container> 
 
@@ -75,7 +77,8 @@
         <mat-card class="single-dashboard-card">
             <mat-card-content>
                 <p>
-                    <button mat-raised-button color="primary" (click)="chooseType(1)">Natural Person</button>
+                    <button mat-raised-button color="primary" 
+                        (click)="chooseType(1)" class="button-choose-type">Natural Person</button>
                 </p>
             </mat-card-content>
         </mat-card>
@@ -83,7 +86,9 @@
         <mat-card class="single-dashboard-card">
             <mat-card-content>
                 <p>
-                    <button mat-raised-button color="primary" (click)="chooseType(2)">Legal Person</button>
+                    <button mat-stroked-button color="warn" 
+                        (click)="chooseType(2)"
+                        class="button-choose-type">Legal Person</button>
                 </p>
             </mat-card-content>
         </mat-card>
@@ -91,7 +96,7 @@
     </div>
 
     <div *ngIf="editing && personType == 1">
-        <app-natural-person-edit></app-natural-person-edit>
+        <app-natural-person-create></app-natural-person-create>
     </div>
 
     <div *ngIf="editing && personType == 2">

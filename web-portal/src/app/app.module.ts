@@ -39,20 +39,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-toolbar.component';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
-import { NaturalPersonEditComponent } from './pages/natural-person-edit/natural-person-edit.component';
 
 import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
 import { MatNativeDateModule } from '@angular/material/core';
-import { LegalPersonEditComponent } from './pages/legal-person-edit/legal-person-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuNavComponent,
     PrimaryToolbarComponent,
-    routingComponent,
-    NaturalPersonEditComponent,
-    LegalPersonEditComponent,
+    routingComponent
   ],
   imports: [
     BrowserModule,
