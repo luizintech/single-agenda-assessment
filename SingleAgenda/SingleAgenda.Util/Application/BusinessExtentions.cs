@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SingleAgenda.Application.Contact;
+using SingleAgenda.Application.Dashboard;
 using SingleAgenda.Application.UsersAndRoles;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SingleAgenda.Util.Application
         {
             services.AddScoped<ContactBusiness>();
             services.AddScoped<AuthBusiness>();
+            services.AddScoped<DashboardBusiness>();
 
             return services;
         }
