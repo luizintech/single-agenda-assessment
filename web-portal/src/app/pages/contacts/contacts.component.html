@@ -47,13 +47,6 @@
                 <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
             </ng-container>
 
-            <!-- CreatedAt -->
-            <ng-container matColumnDef="CreatedAt">
-                <mat-header-cell *matHeaderCellDef> Created At </mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    {{row.createdAt}} 
-                </mat-cell>
-            </ng-container>
 
             <!-- button -->
             <ng-container matColumnDef="Actions">
@@ -67,8 +60,8 @@
             </ng-container> 
 
             <!-- Header and Row Declarations -->
-            <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-row>
+            <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'Actions']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'Actions']"></mat-row>
         </table>
 
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
