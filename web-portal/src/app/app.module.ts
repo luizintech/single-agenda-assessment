@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule  } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const MATERIAL = [
   MatButtonModule,
@@ -41,7 +42,13 @@ import { PrimaryToolbarComponent } from './components/primary-toolbar/primary-to
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 
 import {EnumDisplayNamePipe} from 'src/app/core/pipes/enum-display-name-pipe';
-import { MatNativeDateModule } from '@angular/material/core';
+
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -58,7 +65,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot(maskConfig)
   ],
   exports: [
   ],

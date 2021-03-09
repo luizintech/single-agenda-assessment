@@ -83,7 +83,7 @@
             <mat-form-field appearance="fill" class="email">
                 <mat-label>Document(*):</mat-label>
                 <input matInput type="text" formControlName="document" [(ngModel)]="document"
-                    class="form-control">
+                    class="form-control" mask="000.000.000-00">
             </mat-form-field>
             <div *ngIf="editForm.controls['document'].invalid && 
                     (editForm.controls['document'].dirty 
@@ -102,7 +102,7 @@
             <mat-form-field appearance="fill" class="email">
                 <mat-label>Document(*):</mat-label>
                 <input matInput type="text" formControlName="documentCnpj" [(ngModel)]="documentCnpj"
-                    class="form-control">
+                    class="form-control" mask="00.000.000/0009-99">
             </mat-form-field>
             <div *ngIf="editForm.controls['documentCnpj'].invalid && 
                     (editForm.controls['documentCnpj'].dirty 
