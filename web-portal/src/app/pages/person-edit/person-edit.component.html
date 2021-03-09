@@ -25,24 +25,13 @@
         </div>
 
         <!-- tradeName -->
-        <!-- <div class="form-group row">
+        <div class="form-group row" *ngIf="!isNaturalPerson">
             <mat-form-field appearance="fill" class="tradeName">
-                <mat-label>Trade Name(*):</mat-label>
+                <mat-label>Trade Name:</mat-label>
             <input type="text" matInput formControlName="tradeName" [(ngModel)]="tradeName"
                 class="form-control"> 
             </mat-form-field>
-            
-            <div *ngIf="editForm.controls['tradeName'].invalid && 
-                    (editForm.controls['tradeName'].dirty 
-                        || editForm.controls['tradeName'].touched)" 
-                class="alert alert-danger"
-            >
-                <div *ngIf="editForm.controls['tradeName'].errors != null 
-                    && editForm.controls['tradeName'].errors.required">
-                    Trade Name is required
-                </div>
-            </div>
-        </div> -->
+        </div>
 
         <!-- email -->
         <div class="form-group row">
@@ -65,7 +54,7 @@
         </div>
 
         <!-- gender -->
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="isNaturalPerson">
             <mat-form-field appearance="fill" class="email">
                 <mat-label>Gender(*):</mat-label>
                 <select matNativeControl formControlName="gender" 
@@ -89,8 +78,8 @@
             </div>
         </div>
 
-    <!-- document -->
-    <div class="row">
+        <!-- document CPF -->
+        <div class="row" *ngIf="isNaturalPerson">
             <mat-form-field appearance="fill" class="email">
                 <mat-label>Document(*):</mat-label>
                 <input matInput type="text" formControlName="document" [(ngModel)]="document"
@@ -103,13 +92,32 @@
             >
                 <div *ngIf="editForm.controls['document'].errors != null 
                     && editForm.controls['document'].errors.required">
-                    Document is required
+                    CPF is required
+                </div>
+            </div>
+        </div>
+
+        <!-- document CNPJ -->
+        <div class="row" *ngIf="!isNaturalPerson">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Document(*):</mat-label>
+                <input matInput type="text" formControlName="documentCnpj" [(ngModel)]="documentCnpj"
+                    class="form-control">
+            </mat-form-field>
+            <div *ngIf="editForm.controls['documentCnpj'].invalid && 
+                    (editForm.controls['documentCnpj'].dirty 
+                        || editForm.controls['documentCnpj'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['documentCnpj'].errors != null 
+                    && editForm.controls['documentCnpj'].errors.required">
+                    CNPJ is required
                 </div>
             </div>
         </div>
 
         <!-- bithday -->
-        <div class="row">
+        <div class="row" *ngIf="isNaturalPerson">
             <mat-form-field appearance="birthday">
                 <mat-label>Birthday(*):</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="birthday" 

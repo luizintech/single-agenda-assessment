@@ -21,9 +21,11 @@ export class PersonEditComponent implements OnInit {
   public isNaturalPerson: boolean = true;
 
   public name: string = "";
+  public tradeName: string = "";
   public email: string = "";
   public gender: number = 0;
   public document: string = "";
+  public documentCnpj: string = "";
   public birthday: Date;
 
   public zipcode1: string = "";
@@ -50,9 +52,9 @@ export class PersonEditComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       name:  ['', Validators.required], 
       email:  ['', Validators.required], 
-      gender:  ['', Validators.required],
-      document: ['', Validators.required],
-      birthday: ['', Validators.required],
+      gender:  [''],
+      document: [''],
+      birthday: [''],
       zipcode1: [''],
       description1: [''],
       city1: [''],
@@ -62,7 +64,9 @@ export class PersonEditComponent implements OnInit {
       description2: [''],
       city2: [''],
       state2: [''],
-      country2: ['']          
+      country2: [''],
+      documentCnpj: [''],
+      tradeName: ['']          
     });
   }
 
@@ -76,7 +80,9 @@ export class PersonEditComponent implements OnInit {
 
           this.name = data.name;
           this.email = data.email;
+          this.tradeName = data.tradeName;
           this.document = data.document;
+          this.documentCnpj = data.document;
           this.gender = data.gender;
           this.birthday = data.birthday;
 
@@ -114,6 +120,7 @@ export class PersonEditComponent implements OnInit {
   }
 
   save() {
+    console.log(this.editForm);
     if(this.editForm.valid){
       if (this.additionalAddress1 && !this.validateAddress1()) {
         alert('Please fill all the fields of address 1 area!');
@@ -121,7 +128,7 @@ export class PersonEditComponent implements OnInit {
         alert('Please fill all the fields of address 2 area!');
       } else {
         var person = this.populate();
-      
+        console.log(person);
         this.contactService.update(parseInt(this.personRouteId), person).subscribe((result: Result) => {
           if (result.success) {
             alert('Person edited with success!');
@@ -137,27 +144,29 @@ export class PersonEditComponent implements OnInit {
   private populate() : Person {
     let naturalPerson = new Person();
     naturalPerson.id = parseInt(this.personRouteId);
-    naturalPerson.personType = PersonType.Natural;
     naturalPerson.name = this.name;
     naturalPerson.email = this.email;
-    naturalPerson.birthday = this.birthday;
-    naturalPerson.document = this.document;
 
-    switch (this.gender) {
-      case 1:
+    if (this.isNaturalPerson) {
+      naturalPerson.personType = PersonType.Natural;
+      naturalPerson.birthday = this.birthday;
+      naturalPerson.document = this.document;
+      console.log(this.gender);
+
+      if (this.gender == 1) {
         naturalPerson.gender = Gender.Male;
-        break;
-
-      case 2:
+      } else if (this.gender == 2) {
         naturalPerson.gender = Gender.Female;
-        break;
+      } else if (this.gender == 3) {
+        naturalPerson.gender = Gender.NonBinary
+      }
 
-      case 3:
-        naturalPerson.gender = Gender.NonBinary;
-        break;
-
-      default:
-        break;
+      console.log('debug');
+      console.log(naturalPerson.gender);
+    } else {
+      naturalPerson.document = this.documentCnpj;
+      naturalPerson.tradeName = this.tradeName;
+      naturalPerson.personType = PersonType.Legal;
     }
 
     if (this.description1 != "") {
