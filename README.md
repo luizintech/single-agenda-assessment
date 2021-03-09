@@ -6,19 +6,33 @@
 </p>
 
 ## About SingleAgenda
-Hi there! Thank you for your time and take a look for a moment for this project. SingleAgenda was the name, I don't know why, but it works.
-I invite you my friend to analyse this code, database and running application.
-Questions about the architecture, how to install and some conventions, I'll explain bellow.
-Regards and one more time, thank you for the opportunity!
+Hi there! Thank you for your time to analyse for a moment for this project. SingleAgenda was the name, I don't know why ... but I invite you to take this experience. 
+How to install and some conventions, I'll explain bellow. 
+Best regards!
 
 ## Setup the Projects
 To setup the Single Agenda is very easy and I'll show you how properly setup it.
 
 ### Backend
-....
+All the Backend is in .NET Core version 3.1 and to setup this, you just need to run the build and will be done.
+If you don't have the .NET Core 3.1, here is the link:
+
+https://dotnet.microsoft.com/download
+
+After all builded, just run the project and this will open the environment of API on this url: http://localhost:53539
+
+### Database migration
+Its not necessary to execute the Update-Database command to dump the database because the project will setup in the first time that the service will be accessed.
 
 ### Frontend
-....
+
+Prerequisites:
+- Latest version of NodeJs  installed (https://nodejs.org/dist/v14.16.0/node-v14.16.0-x64.msi);
+- Angular Cli version 10 (I'll show you how to setup bellow)
+
+### Installing the Angular Environment
+Let`s execute the commands inside the CMD Prompt:
+npm install -g @angular/cli@10.0.2
 
 
 ## Nomenclature definition and conventions
