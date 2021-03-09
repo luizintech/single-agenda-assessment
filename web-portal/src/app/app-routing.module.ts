@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { LegalPersonEditComponent } from './pages/legal-person-edit/legal-person-edit.component';
 import { NaturalPersonCreateComponent } from './pages/natural-person-create/natural-person-create.component';
-import { PersonEditComponent } from './pages/person-edit/natural-person-edit.component';
+import { PersonEditComponent } from './pages/person-edit/person-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

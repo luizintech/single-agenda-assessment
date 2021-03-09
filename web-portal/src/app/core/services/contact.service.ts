@@ -23,7 +23,7 @@ export class ContactService extends BaseService {
   }
 
   public getById(id: number){
-    return this.http.get<Person[]>(`${environment.baseApi}/${this._defaultMethod}/${id}`);
+    return this.http.get<Person>(`${environment.baseApi}/${this._defaultMethod}/${id}`);
   }
 
   public create(person: Person): Observable<any> {

@@ -1,0 +1,269 @@
+<app-primary-toolbar></app-primary-toolbar>
+<br>
+
+<div class="container-edit">
+    <form (ngSubmit)="save()"
+        [formGroup]="editForm" >
+        <!-- name -->
+        <div class="form-group row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <mat-form-field appearance="fill" class="email" fxFlex>
+                <mat-label>Name(*):</mat-label>
+            <input type="text" matInput formControlName="name" [(ngModel)]="name"
+                class="form-control"> 
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['name'].invalid && 
+                    (editForm.controls['name'].dirty 
+                        || editForm.controls['name'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['name'].errors != null 
+                    && editForm.controls['name'].errors.required">
+                    Name is required
+                </div>
+            </div>
+        </div>
+
+        <!-- tradeName -->
+        <!-- <div class="form-group row">
+            <mat-form-field appearance="fill" class="tradeName">
+                <mat-label>Trade Name(*):</mat-label>
+            <input type="text" matInput formControlName="tradeName" [(ngModel)]="tradeName"
+                class="form-control"> 
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['tradeName'].invalid && 
+                    (editForm.controls['tradeName'].dirty 
+                        || editForm.controls['tradeName'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['tradeName'].errors != null 
+                    && editForm.controls['tradeName'].errors.required">
+                    Trade Name is required
+                </div>
+            </div>
+        </div> -->
+
+        <!-- email -->
+        <div class="form-group row">
+            <mat-form-field appearance="fill" class="email" fxFlex>
+                <mat-label>Email(*):</mat-label>
+                <input type="text" formControlName="email" [(ngModel)]="email"
+                    matInput class="form-control">
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['email'].invalid && 
+                    (editForm.controls['email'].dirty 
+                        || editForm.controls['email'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['email'].errors != null 
+                    && editForm.controls['email'].errors.required">
+                    Email is required
+                </div>
+            </div>
+        </div>
+
+        <!-- gender -->
+        <div class="form-group row">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Gender(*):</mat-label>
+                <select matNativeControl formControlName="gender" 
+                    [(ngModel)]="gender" required>
+                    <option>(Choose)</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Not Binary</option>
+                </select>
+            </mat-form-field>
+            
+            <div *ngIf="editForm.controls['gender'].invalid && 
+                    (editForm.controls['gender'].dirty 
+                        || editForm.controls['gender'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['gender'].errors != null 
+                    && editForm.controls['gender'].errors.required">
+                    Gender is required
+                </div>
+            </div>
+        </div>
+
+    <!-- document -->
+    <div class="row">
+            <mat-form-field appearance="fill" class="email">
+                <mat-label>Document(*):</mat-label>
+                <input matInput type="text" formControlName="document" [(ngModel)]="document"
+                    class="form-control">
+            </mat-form-field>
+            <div *ngIf="editForm.controls['document'].invalid && 
+                    (editForm.controls['document'].dirty 
+                        || editForm.controls['document'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['document'].errors != null 
+                    && editForm.controls['document'].errors.required">
+                    Document is required
+                </div>
+            </div>
+        </div>
+
+        <!-- bithday -->
+        <div class="row">
+            <mat-form-field appearance="birthday">
+                <mat-label>Birthday(*):</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthday" 
+                    [(ngModel)]="birthday">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="editForm.controls['birthday'].invalid && 
+                    (editForm.controls['birthday'].dirty 
+                        || editForm.controls['birthday'].touched)" 
+                class="alert alert-danger"
+            >
+                <div *ngIf="editForm.controls['birthday'].errors != null 
+                    && editForm.controls['birthday'].errors.required">
+                    Birthday is required
+                </div>
+            </div>
+        </div>
+
+        <button type="button" 
+                mat-raised-button
+                mat-raised-button color="default"
+                (click)="showAddressArea(1)">Add an address</button>
+
+            <!-- Address 1 -->
+            <div *ngIf="additionalAddress1" class="address-area-1">
+                <mat-card class="single-dashboard-card" >
+                    <mat-card-header>
+                        <mat-card-title>Address Info 1</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        
+                        <!-- Zip Code -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="zipcode1">
+                                <mat-label>Zip Code:</mat-label>
+                                <input matInput type="text" formControlName="zipcode1" [(ngModel)]="zipcode1"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- Description -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="description1">
+                                <mat-label>Address / Number / District:</mat-label>
+                                <input matInput type="text" formControlName="description1" [(ngModel)]="description1"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- City -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="city1">
+                                <mat-label>City:</mat-label>
+                                <input matInput type="text" formControlName="city1" [(ngModel)]="city1"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- State -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="state1">
+                                <mat-label>State:</mat-label>
+                                <input matInput type="text" formControlName="state1" [(ngModel)]="state1"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- Country -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="country1">
+                                <mat-label>Country:</mat-label>
+                                <input matInput type="text" formControlName="country1" [(ngModel)]="country1"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <button type="button"
+                mat-raised-button
+                mat-raised-button color="default"
+                (click)="showAddressArea(2)" 
+                *ngIf="additionalAddress1">Add an address</button>
+
+            <!-- Address 2 -->
+            <div class="address-area-2">
+                <mat-card class="single-dashboard-card" *ngIf="additionalAddress2">
+                    <mat-card-header>
+                        <mat-card-title>Address Info 2</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        
+                        <!-- Zip Code -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="zipcode2">
+                                <mat-label>Zip Code:</mat-label>
+                                <input matInput type="text" formControlName="zipcode2" [(ngModel)]="zipcode2"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- Description -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="description2">
+                                <mat-label>Address / Number / District:</mat-label>
+                                <input matInput type="text" formControlName="description2" [(ngModel)]="description2"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- City -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="city2">
+                                <mat-label>City:</mat-label>
+                                <input matInput type="text" formControlName="city2" [(ngModel)]="city2"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- State -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="state2">
+                                <mat-label>State:</mat-label>
+                                <input matInput type="text" formControlName="state2" [(ngModel)]="state2"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                        <!-- Country -->
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="country2">
+                                <mat-label>Country:</mat-label>
+                                <input matInput type="text" formControlName="country2" [(ngModel)]="country2"
+                                    class="form-control">
+                            </mat-form-field>
+                        </div>
+        
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        <div class="form-group row">
+            <button type="submit" mat-raised-button 
+                mat-raised-button color="primary">
+                Save
+            </button>
+            <button type="button" (click)="cancel()"
+                mat-raised-button
+                mat-raised-button color="default">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>

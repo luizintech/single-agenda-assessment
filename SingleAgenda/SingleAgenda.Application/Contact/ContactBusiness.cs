@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SingleAgenda.Application.Base;
 using SingleAgenda.Dtos.Contact;
+using SingleAgenda.Dtos.Location;
 using SingleAgenda.Dtos.Messages;
 using SingleAgenda.Entities.Contact;
 using SingleAgenda.Entities.Location;
@@ -50,7 +51,7 @@ namespace SingleAgenda.Application.Contact
 
         public async Task<PersonDto> GetByIdAsync(int id)
         {
-            return await this.dbContext.Persons
+            var person = await this.dbContext.Persons
                 .Where(p => p.Id == id)
                 .Select(p => new PersonDto()
                 {
@@ -66,6 +67,23 @@ namespace SingleAgenda.Application.Contact
                     Removed = p.Removed
                 })
                 .SingleOrDefaultAsync();
+
+            if (person != null)
+            {
+                person.Addresses = this.dbContext.Addresses
+                    .Where(ad => ad.PersonId == person.Id)
+                    .Select(ad => new AddressDto()
+                    {
+                        ZipCode = ad.ZipCode,
+                        City = ad.City,
+                        Country = ad.Country,
+                        Description = ad.Description,
+                        State = ad.State
+                    })
+                    .ToList();
+            }
+
+            return person;
         }
 
         public async Task<ResultDto> CreateAsync(PersonDto person)
@@ -108,7 +126,7 @@ namespace SingleAgenda.Application.Contact
                         this.dbContext.Addresses
                             .RemoveRange(currentPerson.Addresses);
 
-                        currentPerson = PopulateThePersonEntityFromDto(person);
+                        PopulateThePersonForEdit(person, currentPerson);
                         await this.dbContext.SaveChangesAsync();
                         result.Success = true;
                     }
@@ -178,10 +196,37 @@ namespace SingleAgenda.Application.Contact
                     }).ToList()
             };
 
-            if (dto.Id > 0)
-                person.UpdatedAt = DateTime.Now;
-
             return person;
+        }
+
+        private void PopulateThePersonForEdit(PersonDto dto, Person currentPerson)
+        {
+            currentPerson.Birthday = dto.Birthday;
+            currentPerson.Document = dto.Document;
+            currentPerson.Gender = dto.Gender;
+            currentPerson.Name = dto.Name;
+            currentPerson.Email = dto.Email;
+            currentPerson.PersonType = dto.PersonType;
+            currentPerson.Id = dto.Id;
+            currentPerson.TradeName = dto.TradeName;
+
+            dto.Addresses
+                .ForEach(ad => IncludeAddresses(ad, currentPerson.Addresses));
+             
+            if (dto.Id > 0)
+                currentPerson.UpdatedAt = DateTime.Now;
+        }
+
+        private void IncludeAddresses(AddressDto dto, List<Address> current)
+        {
+            var address = new Address();
+            address.City = dto.City;
+            address.Country = dto.Country;
+            address.Description = dto.Description;
+            address.PersonId = dto.PersonId;
+            address.State = dto.State;
+            address.ZipCode = dto.ZipCode;
+            current.Add(address);
         }
 
         private async Task<bool> EnsureNotExistsAsync(PersonDto person)
