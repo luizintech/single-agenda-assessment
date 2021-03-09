@@ -70,6 +70,8 @@
             <mat-header-row *matHeaderRowDef="['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-header-row>
             <mat-row *matRowDef="let row; columns: ['Id', 'Type', 'Name', 'Email', 'CreatedAt', 'Actions']"></mat-row>
         </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 
     <div *ngIf="editing && personType == 0">

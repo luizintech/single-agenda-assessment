@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule  } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MATERIAL = [
   MatButtonModule,
@@ -28,7 +29,8 @@ const MATERIAL = [
   MatCardModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 ]
 
 //#endregion

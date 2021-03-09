@@ -6,7 +6,7 @@
             <mat-form-field appearance="fill" class="email" fxFlex>
                 <mat-label>Name(*):</mat-label>
                <input type="text" matInput formControlName="name" [(ngModel)]="name"
-                class="form-control"> 
+                class="form-control" maxlength="80"> 
             </mat-form-field>
             
             <div *ngIf="editForm.controls['name'].invalid && 
@@ -26,7 +26,7 @@
             <mat-form-field appearance="fill" class="email" fxFlex>
                 <mat-label>Email(*):</mat-label>
                 <input type="text" formControlName="email" [(ngModel)]="email"
-                    matInput class="form-control">
+                    matInput class="form-control" maxlength="50">
             </mat-form-field>
             
             <div *ngIf="editForm.controls['email'].invalid && 
@@ -124,7 +124,7 @@
                         <mat-form-field appearance="fill" class="zipcode1">
                             <mat-label>Zip Code:</mat-label>
                             <input matInput type="text" formControlName="zipcode1" [(ngModel)]="zipcode1"
-                                class="form-control">
+                                class="form-control" mask="00000-000">
                         </mat-form-field>
                     </div>
     
@@ -133,7 +133,7 @@
                         <mat-form-field appearance="fill" class="description1">
                             <mat-label>Address / Number / District:</mat-label>
                             <input matInput type="text" formControlName="description1" [(ngModel)]="description1"
-                                class="form-control">
+                                class="form-control" maxlength="100">
                         </mat-form-field>
                     </div>
     
@@ -142,7 +142,7 @@
                         <mat-form-field appearance="fill" class="city1">
                             <mat-label>City:</mat-label>
                             <input matInput type="text" formControlName="city1" [(ngModel)]="city1"
-                                class="form-control">
+                                class="form-control" maxlength="80">
                         </mat-form-field>
                     </div>
     
@@ -151,16 +151,18 @@
                         <mat-form-field appearance="fill" class="state1">
                             <mat-label>State:</mat-label>
                             <input matInput type="text" formControlName="state1" [(ngModel)]="state1"
-                                class="form-control">
+                                class="form-control" maxlength="50">
                         </mat-form-field>
                     </div>
     
                     <!-- Country -->
                     <div class="row">
                         <mat-form-field appearance="fill" class="country1">
-                            <mat-label>Country:</mat-label>
-                            <input matInput type="text" formControlName="country1" [(ngModel)]="country1"
-                                class="form-control">
+                            <mat-label>Country: (only 3 characters. Ex.: United States -> USA)</mat-label>
+                            <input matInput type="text" formControlName="country1" 
+                                [(ngModel)]="country1"
+                                class="form-control"
+                                maxlength="3">
                         </mat-form-field>
                     </div>
     
@@ -187,7 +189,7 @@
                         <mat-form-field appearance="fill" class="zipcode2">
                             <mat-label>Zip Code:</mat-label>
                             <input matInput type="text" formControlName="zipcode2" [(ngModel)]="zipcode2"
-                                class="form-control">
+                                class="form-control" mask="00000-000">
                         </mat-form-field>
                     </div>
     
@@ -196,7 +198,7 @@
                         <mat-form-field appearance="fill" class="description2">
                             <mat-label>Address / Number / District:</mat-label>
                             <input matInput type="text" formControlName="description2" [(ngModel)]="description2"
-                                class="form-control">
+                                class="form-control" maxlength="100">
                         </mat-form-field>
                     </div>
     
@@ -205,7 +207,7 @@
                         <mat-form-field appearance="fill" class="city2">
                             <mat-label>City:</mat-label>
                             <input matInput type="text" formControlName="city2" [(ngModel)]="city2"
-                                class="form-control">
+                                class="form-control" maxlength="80">
                         </mat-form-field>
                     </div>
     
@@ -214,16 +216,18 @@
                         <mat-form-field appearance="fill" class="state2">
                             <mat-label>State:</mat-label>
                             <input matInput type="text" formControlName="state2" [(ngModel)]="state2"
-                                class="form-control">
+                                class="form-control" maxlength="50">
                         </mat-form-field>
                     </div>
     
                     <!-- Country -->
                     <div class="row">
                         <mat-form-field appearance="fill" class="country2">
-                            <mat-label>Country:</mat-label>
-                            <input matInput type="text" formControlName="country2" [(ngModel)]="country2"
-                                class="form-control">
+                            <mat-label>Country: (only 3 characters. Ex.: United States -> USA)</mat-label>
+                            <input matInput type="text" formControlName="country2" 
+                                [(ngModel)]="country2"
+                                class="form-control"
+                                maxlength="3">
                         </mat-form-field>
                     </div>
     

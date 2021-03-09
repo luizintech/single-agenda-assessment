@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { AuthManager } from 'src/app/core/helpers/auth/auth-manager';
 import { Person } from 'src/app/core/model/contacts/person';
@@ -12,6 +13,8 @@ import { ContactService } from 'src/app/core/services/contact.service';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public contacts: Person[] = [];
   public editing: boolean = false;
