@@ -17,6 +17,14 @@ export class MenuNavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  home() {
+    this.router.navigate(['home']);
+  }
+
+  showContacts() {
+    this.router.navigate(['contacts']);
+  }
+
   logout() {
     this.authManager.abandom();
     this.router.navigate(['login']);
