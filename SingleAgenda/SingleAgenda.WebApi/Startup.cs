@@ -47,12 +47,6 @@ namespace SingleAgenda.WebApi
             });
 
             services.AddDbContext<SingleAgendaDbContext>(this.Configuration, "DefaultConnection");
-
-            //services.AddScoped<DbContext, SingleAgendaDbContext>();
-
-            //services.AddDbContext<DbContext>(option =>
-            //    option.UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString()));
-
             services.AddControllers();
             services.AddBusiness(this.Configuration);
 
