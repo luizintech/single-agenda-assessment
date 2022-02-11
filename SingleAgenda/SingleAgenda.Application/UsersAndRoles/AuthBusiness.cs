@@ -36,26 +36,17 @@ namespace SingleAgenda.Application.UsersAndRoles
             {
                 var userSearch = await this.dbContext.Users
                     .Where(us => us.Email == user.Email && us.Password == user.Password)
+                    .Select(us => new UserDto()
+                    {
+                        Email = us.Email,
+                        Name = us.Name,
+                    })
                     .SingleOrDefaultAsync();
 
                 if (userSearch != null)
                 {
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var key = Encoding.ASCII.GetBytes("c2luZ2xlQWdlbmRhU2VjcmV0");
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                        Expires = DateTime.UtcNow.AddDays(1),
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                    };
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-                    result.Token = tokenHandler.WriteToken(token);
-                    result.UserInfo = new UserDto()
-                    {
-                        Name = userSearch.Name,
-                        Email = userSearch.Email,
-                        Id = user.Id
-                    };
+                    result.Token = GenerateToken(userSearch);
+                    result.UserInfo = userSearch;
                     result.Success = true;
                 }
                 else
@@ -67,6 +58,23 @@ namespace SingleAgenda.Application.UsersAndRoles
             }
 
             return result;
+        }
+
+        public static string GenerateToken(UserDto userInfo)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("single-agenda-security");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Email, userInfo.Email),
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(30),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         #endregion

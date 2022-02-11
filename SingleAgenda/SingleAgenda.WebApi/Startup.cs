@@ -10,6 +10,7 @@ using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Infra.IoC.Application;
 using SingleAgenda.Infra.IoC.Security;
 using System;
+using System.Text;
 
 namespace SingleAgenda.WebApi
 {
@@ -42,14 +43,11 @@ namespace SingleAgenda.WebApi
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("single-agenda-example")),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("single-agenda-security")),
                     ValidateIssuerSigningKey = true,
                     ClockSkew = TimeSpan.FromMinutes(30),
-                    ValidIssuer = "SingleAgenda.WebApi",
-                    ValidAudience = "Postman",
                 };
             });
 
@@ -73,6 +71,7 @@ namespace SingleAgenda.WebApi
             app.UseRouting();
             app.UseCors(corsSpecificationOrigins);
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

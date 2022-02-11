@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SingleAgenda.Application.Contact;
 using SingleAgenda.Dtos.Contact;
 using SingleAgenda.Dtos.Messages;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SingleAgenda.WebApi.Controllers
