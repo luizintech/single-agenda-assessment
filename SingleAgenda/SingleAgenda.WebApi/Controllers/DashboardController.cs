@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SingleAgenda.Application.Dashboard;
-using SingleAgenda.Dtos.Contact;
 using SingleAgenda.Dtos.Dashboard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SingleAgenda.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/dashboard")]
     [ApiController]
     public class DashboardController : ControllerBase

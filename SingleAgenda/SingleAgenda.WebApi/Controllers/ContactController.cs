@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace SingleAgenda.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/contacts")]
     [ApiController]
     public class ContactController 
         : ControllerBase
     {
 
-        //[Authorize]
         [HttpGet]
         public IEnumerable<PersonDto> Search(
             [FromQuery] PersonSearchParameter personSearchParameter,
@@ -27,7 +27,6 @@ namespace SingleAgenda.WebApi.Controllers
             return contactBusiness.ListAllAsync(personSearchParameter);
         }
 
-        //[Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonDto>> GetByIdAsync(
             [FromRoute] int id,
@@ -36,7 +35,6 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.GetByIdAsync(id);
         }
 
-        //[Authorize]
         [HttpPost]
         public async Task<ActionResult<ResultDto>> CreateAsync(
             [FromBody] PersonDto person,
@@ -48,7 +46,6 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.CreateAsync(person);
         }
 
-        //[Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultDto>> UpdateAsync(
             [FromRoute] int id,
@@ -62,7 +59,6 @@ namespace SingleAgenda.WebApi.Controllers
             return await contactBusiness.UpdateAsync(person);
         }
 
-        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<ResultDto>> DeleteAsync(
             [FromRoute] int id,
