@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SingleAgenda.EFPersistence.Configuration;
-using SingleAgenda.Util.Application;
-using SingleAgenda.Util.Data;
-using SingleAgenda.Util.Security;
+using SingleAgenda.Infra.IoC.Application;
+using SingleAgenda.Infra.IoC.Data;
+using SingleAgenda.Infra.IoC.Security;
 
 namespace SingleAgenda.WebApi
 {

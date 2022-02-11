@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingleAgenda.Util.Data
+namespace SingleAgenda.Infra.IoC.Data
 {
     public interface IDbInitializer
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SingleAgenda.Util.Security
+namespace SingleAgenda.Infra.IoC.Security
 {
     public class JwtMiddleware
     {

@@ -20,7 +20,7 @@
     <ProjectReference Include="..\SingleAgenda.Dtos\SingleAgenda.Dtos.csproj" />
     <ProjectReference Include="..\SingleAgenda.Entities\SingleAgenda.Entities.csproj" />
     <ProjectReference Include="..\SingleAgenda.Infra\SingleAgenda.EFPersistence.csproj" />
-    <ProjectReference Include="..\SingleAgenda.Util\SingleAgenda.Util.csproj" />
+    <ProjectReference Include="..\SingleAgenda.Util\SingleAgenda.Infra.IoC.csproj" />
   </ItemGroup>
 
 

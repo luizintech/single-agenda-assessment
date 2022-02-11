@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SingleAgenda.Util.Data
+namespace SingleAgenda.Infra.IoC.Data
 {
     public class DbInitializer : IDbInitializer
     {
@@ -15,7 +15,7 @@ namespace SingleAgenda.Util.Data
 
         public DbInitializer(IServiceScopeFactory scopeFactory)
         {
-            this._scopeFactory = scopeFactory;
+            _scopeFactory = scopeFactory;
         }
 
         public void Initialize()
@@ -41,7 +41,7 @@ namespace SingleAgenda.Util.Data
                         var adminUser = new User
                         {
                             Name = "Admin",
-                            Password = "123456", 
+                            Password = "123456",
                             Email = "admin@admin"
                         };
                         context.Users.Add(adminUser);

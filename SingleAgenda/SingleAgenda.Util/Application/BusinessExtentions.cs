@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingleAgenda.Util.Application
+namespace SingleAgenda.Infra.IoC.Application
 {
     public static class BusinessExtentions
     {
