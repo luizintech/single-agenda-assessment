@@ -10,10 +10,6 @@ namespace SingleAgenda.EFPersistence.Repositories
     public class AddressRepository
         : RepositoryBase<Address>
     {
-        //public AddressRepository(IServiceProvider serviceProvider)
-        //    : base(serviceProvider)
-        //{
-        //}
 
         public AddressRepository(SingleAgendaDbContext context)
             : base(context)

@@ -6,78 +6,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SingleAgenda.EFPersistence.Base
 {
-    public abstract class RepositoryBase<T>
-        : IRepository<T>, IDisposable
-        where T : EntityBase
+    public abstract class RepositoryBase<TEntity>
+        : IRepository<TEntity>, IDisposable
+        where TEntity : EntityBase
     {
-        private readonly SingleAgendaDbContext _context;
 
-        #region Constructors
-
-        //public RepositoryBase(IServiceProvider serviceProvider)
-        //    : this(new SingleAgendaDbContext(serviceProvider))
-        //{
-        //}
+        protected readonly SingleAgendaDbContext _context;
 
         public RepositoryBase(SingleAgendaDbContext context)
         {
             _context = context;
         }
 
-        #endregion
+        /// <summary>
+        /// In some cases you need to expose the IQueryable result.
+        /// Extends this property to make the custom query and inprove performance,
+        /// avoiding the box and unbox issues, usign conversion between lists.
+        /// </summary>
+        public IQueryable<TEntity> All =>
+            this._context.Set<TEntity>().AsQueryable();
 
-        public int Add(T entity)
+        public async Task<int> AddAsync(TEntity entity)
         {
-            _context.Set<T>().Add(entity);
-            return _context.SaveChanges();
+            await this._context.Set<TEntity>().AddRangeAsync(entity);
+            return await this._context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(TEntity entity)
         {
-            var entity = GetById(id);
-            entity.UpdatedAt = DateTime.Now;
-            entity.Removed = true;
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.Set<T>().Update(entity);
+            this._context.Set<TEntity>().RemoveRange(entity);
+            await this._context.SaveChangesAsync();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> predicate)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return _context.Set<T>().Where(predicate).AsEnumerable();
+            return await this._context.FindAsync<TEntity>(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<TEntity> List()
         {
-            return _context.Set<T>()
-                .Where(et => et.Removed == true)
-                .ToArray();
-        }
-
-        public T GetById(int id)
-        {
-            return _context.Set<T>()
-                .Where(et => et.Id == id)
-                .SingleOrDefault();
-        }
-
-        public IEnumerable<T> List()
-        {
-            return _context.Set<T>()
+            return _context.Set<TEntity>()
                 .Where(et => et.Removed == false)
                 .ToArray();
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            this._context.Set<TEntity>().UpdateRange(entity);
+            await this._context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Release resources
+        /// </summary>
         public void Dispose()
         {
-            // Todo the disposable method according.
+            this._context.Dispose();
         }
     }
 }

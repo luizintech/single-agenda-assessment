@@ -10,11 +10,6 @@ namespace SingleAgenda.EFPersistence.Repositories
     public class PersonRepository
         : RepositoryBase<Person>
     {
-        //public PersonRepository(IServiceProvider serviceProvider) 
-        //    : base(serviceProvider)
-        //{
-        //}
-
         public PersonRepository(SingleAgendaDbContext context)
             : base(context)
         {

@@ -1,38 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
+﻿using SingleAgenda.Entities.Base;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SingleAgenda.EFPersistence.Base
 {
-    public interface IRepository<T> where
-        T : class
+    public interface IRepository<TEntity> where
+        TEntity : EntityBase
     {
 
-        /// <summary>
-        /// Will list all row, except the removed.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<T> List();
-
-        /// <summary>
-        /// Will list all row, including the removed.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<T> GetAll();
-
-        /// <summary>
-        /// For some filter conditions, pass the predicate.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<T> Get(Expression<Func<T, bool>> predicate);
-
-        T GetById(int id);
-
-        int Add(T entity);
-        void Update(T entity);
-
-        void Delete(int id);
+        IQueryable<TEntity> All { get; }
+        Task<TEntity> GetByIdAsync(int id);
+        Task<int> AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
 
     }
 }
