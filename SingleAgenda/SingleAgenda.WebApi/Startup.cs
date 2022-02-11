@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Infra.IoC.Application;
-using SingleAgenda.Infra.IoC.Data;
 using SingleAgenda.Infra.IoC.Security;
 
 namespace SingleAgenda.WebApi
@@ -26,14 +26,15 @@ namespace SingleAgenda.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             this.CorsSetup(services);
-            services.AddDbContext<SingleAgendaDbContext>(this.Configuration, "DefaultConnection");
+            services.AddDbContext<SingleAgendaDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddControllers();
             services.AddBusiness(this.Configuration);
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            services.AddScoped<IDbInitializer, DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,14 +56,6 @@ namespace SingleAgenda.WebApi
             {
                 endpoints.MapControllers();
             });
-            
-            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using (var scope = scopeFactory.CreateScope())
-            {
-                var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
-                dbInitializer.Initialize();
-                dbInitializer.SeedData();
-            }
 
             app.UseMiddleware<JwtMiddleware>();
         }
