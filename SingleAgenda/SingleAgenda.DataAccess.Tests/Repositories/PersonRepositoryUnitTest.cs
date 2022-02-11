@@ -1,14 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Moq;
 using NUnit.Framework;
 using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Entities.Contact;
 using SingleAgenda.Entities.Location;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Transactions;
-using Xunit;
 
 namespace SingleAgenda.DataAccess.Tests.Repositories
 {
