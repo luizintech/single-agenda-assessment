@@ -1,17 +1,14 @@
 ﻿using SingleAgenda.EFPersistence.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SingleAgenda.Application.Base
 {
-    public class BusinessBase
+    public abstract class BusinessBase
     {
-        protected readonly SingleAgendaDbContext dbContext;
+        protected readonly SingleAgendaDbContext _context;
 
         public BusinessBase(SingleAgendaDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._context = dbContext;
         }
     }
 }

@@ -30,14 +30,14 @@ namespace SingleAgenda.Application.Dashboard
         {
             var dashboardResult = new DashboardStatisticsDto();
 
-            dashboardResult.TotalContacts = await this.dbContext.Persons
+            dashboardResult.TotalContacts = await this._context.Persons
                 .CountAsync();
 
-            dashboardResult.NaturalPersons = await this.dbContext.Persons
+            dashboardResult.NaturalPersons = await this._context.Persons
                 .Where(p => p.PersonType == Entities.Contact.PersonType.Natural)
                 .CountAsync();
 
-            dashboardResult.LegalPersons = await this.dbContext.Persons
+            dashboardResult.LegalPersons = await this._context.Persons
                 .Where(p => p.PersonType == Entities.Contact.PersonType.Legal)
                 .CountAsync();
 

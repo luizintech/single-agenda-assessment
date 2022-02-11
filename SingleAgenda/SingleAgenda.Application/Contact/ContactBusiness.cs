@@ -9,7 +9,6 @@ using SingleAgenda.Entities.Location;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SingleAgenda.Application.Contact
@@ -31,7 +30,7 @@ namespace SingleAgenda.Application.Contact
 
         public IEnumerable<PersonDto> ListAllAsync(PersonSearchParameter personSearchParameter)
         {
-            return this.dbContext.Persons
+            return this._context.Persons
                 .Where(p => p.Removed == personSearchParameter.ShowRemoved)
                 .Select(p => new PersonDto()
                 {
@@ -51,7 +50,7 @@ namespace SingleAgenda.Application.Contact
 
         public async Task<PersonDto> GetByIdAsync(int id)
         {
-            var person = await this.dbContext.Persons
+            var person = await this._context.Persons
                 .Where(p => p.Id == id)
                 .Select(p => new PersonDto()
                 {
@@ -70,7 +69,7 @@ namespace SingleAgenda.Application.Contact
 
             if (person != null)
             {
-                person.Addresses = this.dbContext.Addresses
+                person.Addresses = this._context.Addresses
                     .Where(ad => ad.PersonId == person.Id)
                     .Select(ad => new AddressDto()
                     {
@@ -94,8 +93,8 @@ namespace SingleAgenda.Application.Contact
                 try
                 {
                     var newPerson = PopulateThePersonEntityFromDto(person);
-                    this.dbContext.Persons.Add(newPerson);
-                    result.InsertedId = await this.dbContext.SaveChangesAsync();
+                    this._context.Persons.Add(newPerson);
+                    result.InsertedId = await this._context.SaveChangesAsync();
                     result.Success = true;
                 }
                 catch (Exception ex)
@@ -116,18 +115,18 @@ namespace SingleAgenda.Application.Contact
             {
                 try
                 {
-                    var currentPerson = await this.dbContext.Persons
+                    var currentPerson = await this._context.Persons
                         .Include(p => p.Addresses)
                         .Where(p => p.Id == person.Id)
                         .FirstOrDefaultAsync();
 
                     if (currentPerson != null)
                     {
-                        this.dbContext.Addresses
+                        this._context.Addresses
                             .RemoveRange(currentPerson.Addresses);
 
                         PopulateThePersonForEdit(person, currentPerson);
-                        await this.dbContext.SaveChangesAsync();
+                        await this._context.SaveChangesAsync();
                         result.Success = true;
                     }
                 }
@@ -148,7 +147,7 @@ namespace SingleAgenda.Application.Contact
 
             try
             {
-                var currentPerson = await this.dbContext.Persons
+                var currentPerson = await this._context.Persons
                     .Where(fr => fr.Id == id)
                     .FirstOrDefaultAsync();
 
@@ -156,7 +155,7 @@ namespace SingleAgenda.Application.Contact
                 {
                     currentPerson.UpdatedAt = DateTime.Now;
                     currentPerson.Removed = true;
-                    await this.dbContext.SaveChangesAsync();
+                    await this._context.SaveChangesAsync();
                     result.Success = true;
                 }
             }
@@ -231,7 +230,7 @@ namespace SingleAgenda.Application.Contact
 
         private async Task<bool> EnsureNotExistsAsync(PersonDto person)
         {
-            return await this.dbContext.Persons.AnyAsync(p =>
+            return await this._context.Persons.AnyAsync(p =>
                 p.Id != person.Id &&
                 p.Name == person.Name &&
                 p.Document == person.Document);

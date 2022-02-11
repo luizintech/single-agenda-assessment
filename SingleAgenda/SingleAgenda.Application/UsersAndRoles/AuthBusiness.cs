@@ -34,7 +34,7 @@ namespace SingleAgenda.Application.UsersAndRoles
             var result = new AuthMessageDto();
             try
             {
-                var userSearch = await this.dbContext.Users
+                var userSearch = await this._context.Users
                     .Where(us => us.Email == user.Email && us.Password == user.Password)
                     .Select(us => new UserDto()
                     {
