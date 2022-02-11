@@ -25,6 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleAgenda.WebApi", "SingleAgenda.WebApi\SingleAgenda.WebApi.csproj", "{9675AFFF-51C3-4731-A11A-EE77350B9FE2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00-Solution Items", "00-Solution Items", "{E20EBD34-EB89-49B4-BE25-1709B33157D8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
