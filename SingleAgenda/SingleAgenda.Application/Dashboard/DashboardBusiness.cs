@@ -28,20 +28,13 @@ namespace SingleAgenda.Application.Dashboard
 
         public async Task<DashboardStatisticsDto> ShowAsync()
         {
-            var dashboardResult = new DashboardStatisticsDto();
-
-            dashboardResult.TotalContacts = await this._context.Persons
-                .CountAsync();
-
-            dashboardResult.NaturalPersons = await this._context.Persons
-                .Where(p => p.PersonType == Entities.Contact.PersonType.Natural)
-                .CountAsync();
-
-            dashboardResult.LegalPersons = await this._context.Persons
-                .Where(p => p.PersonType == Entities.Contact.PersonType.Legal)
-                .CountAsync();
-
-            return dashboardResult;
+            return await this._context.Persons.GroupBy(p => 1)
+                .Select(person => new DashboardStatisticsDto()
+                {
+                    TotalContacts = person.Count(),
+                    NaturalPersons = person.Where(p => p.PersonType == Entities.Contact.PersonType.Natural).Count(),
+                    LegalPersons = person.Where(p => p.PersonType == Entities.Contact.PersonType.Legal).Count()
+                }).SingleOrDefaultAsync();
         }
 
         #endregion
