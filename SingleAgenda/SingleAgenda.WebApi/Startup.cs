@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Infra.IoC.Application;
 using SingleAgenda.Infra.IoC.Security;
+using System;
 
 namespace SingleAgenda.WebApi
 {
@@ -30,6 +33,26 @@ namespace SingleAgenda.WebApi
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("single-agenda-example")),
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.FromMinutes(30),
+                    ValidIssuer = "SingleAgenda.WebApi",
+                    ValidAudience = "Postman",
+                };
+            });
+
             services.AddControllers();
             services.AddBusiness(this.Configuration);
 
@@ -57,7 +80,7 @@ namespace SingleAgenda.WebApi
                 endpoints.MapControllers();
             });
 
-            app.UseMiddleware<JwtMiddleware>();
+            //app.UseMiddleware<JwtMiddleware>();
         }
 
         private void CorsSetup(IServiceCollection services)
