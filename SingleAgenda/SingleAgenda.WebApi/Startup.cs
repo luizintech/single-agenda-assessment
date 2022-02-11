@@ -1,28 +1,19 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Util.Application;
 using SingleAgenda.Util.Data;
 using SingleAgenda.Util.Security;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SingleAgenda.WebApi
 {
     public class Startup
     {
 
-        readonly string specificOriginsCors = "_specificOriginsCors";
+        readonly string corsSpecificationOrigins = "_corsSpecificationOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -34,18 +25,7 @@ namespace SingleAgenda.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: specificOriginsCors,
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200",
-                                            "http://localhost")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                    });
-            });
-
+            this.CorsSetup(services);
             services.AddDbContext<SingleAgendaDbContext>(this.Configuration, "DefaultConnection");
             services.AddControllers();
             services.AddBusiness(this.Configuration);
@@ -59,8 +39,6 @@ namespace SingleAgenda.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(specificOriginsCors);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,6 +47,7 @@ namespace SingleAgenda.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(corsSpecificationOrigins);
 
             app.UseAuthorization();
 
@@ -86,6 +65,25 @@ namespace SingleAgenda.WebApi
             }
 
             app.UseMiddleware<JwtMiddleware>();
+        }
+
+        private void CorsSetup(IServiceCollection services)
+        {
+            var angularPortalUrl = Configuration["AngularPortalUrl"];
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: corsSpecificationOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins(
+                            angularPortalUrl
+                        )
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                    });
+            });
         }
     }
 }
