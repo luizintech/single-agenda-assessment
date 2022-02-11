@@ -13,8 +13,9 @@ namespace SingleAgenda.Application.Dashboard
 
         private readonly PersonRepository _personRepository;
 
-        public DashboardBusiness()
+        public DashboardBusiness(PersonRepository personRepository)
         {
+            this._personRepository = personRepository;
         }
 
         public async Task<DashboardStatisticsDto> ShowAsync()
