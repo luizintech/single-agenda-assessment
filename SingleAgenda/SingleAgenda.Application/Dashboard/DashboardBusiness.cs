@@ -1,24 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SingleAgenda.Application.Base;
 using SingleAgenda.Dtos.Dashboard;
-using SingleAgenda.EFPersistence.Configuration;
+using SingleAgenda.EFPersistence.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SingleAgenda.Application.Dashboard
 {
     public class DashboardBusiness
-        : BusinessBase
+        : IBusiness
     {
 
-        public DashboardBusiness(SingleAgendaDbContext context)
-            : base(context)
+        private readonly PersonRepository _personRepository;
+
+        public DashboardBusiness()
         {
         }
 
         public async Task<DashboardStatisticsDto> ShowAsync()
         {
-            return await this._context.Persons.GroupBy(p => 1)
+            return await this._personRepository.All.GroupBy(p => 1)
                 .Select(person => new DashboardStatisticsDto()
                 {
                     TotalContacts = person.Count(),

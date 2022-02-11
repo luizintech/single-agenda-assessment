@@ -15,7 +15,7 @@ namespace SingleAgenda.EFPersistence.Base
         where TEntity : EntityBase
     {
 
-        protected readonly SingleAgendaDbContext _context;
+        private readonly SingleAgendaDbContext _context;
 
         public RepositoryBase(SingleAgendaDbContext context)
         {

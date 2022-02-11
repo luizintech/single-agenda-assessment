@@ -1,14 +1,14 @@
 ﻿using SingleAgenda.EFPersistence.Base;
 using SingleAgenda.EFPersistence.Configuration;
-using SingleAgenda.Entities.Location;
+using SingleAgenda.Entities.UsersAndRoles;
 
 namespace SingleAgenda.EFPersistence.Repositories
 {
-    public class AddressRepository
-        : RepositoryBase<Address>
+    public class UserRepository
+        : RepositoryBase<User>
     {
 
-        public AddressRepository(SingleAgendaDbContext context)
+        public UserRepository(SingleAgendaDbContext context)
             : base(context)
         {
         }

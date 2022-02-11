@@ -4,6 +4,7 @@ using SingleAgenda.Dtos.Contact;
 using SingleAgenda.Dtos.Location;
 using SingleAgenda.Dtos.Messages;
 using SingleAgenda.EFPersistence.Configuration;
+using SingleAgenda.EFPersistence.Repositories;
 using SingleAgenda.Entities.Contact;
 using SingleAgenda.Entities.Location;
 using System;
@@ -14,23 +15,22 @@ using System.Threading.Tasks;
 namespace SingleAgenda.Application.Contact
 {
     public class ContactBusiness
-        : BusinessBase
+        : IBusiness
     {
 
-        #region Constructor
+        private readonly PersonRepository _personRepository;
+        private readonly UserRepository _addressRepository;
 
-        public ContactBusiness(SingleAgendaDbContext context)
-            : base(context)
+        public ContactBusiness(PersonRepository personRepository,
+            UserRepository addressRepository)
         {
+            this._personRepository = personRepository;
+            this._addressRepository = addressRepository;
         }
-
-        #endregion
-
-        #region Public Methods
 
         public IEnumerable<PersonDto> ListAllAsync(PersonSearchParameter personSearchParameter)
         {
-            return this._context.Persons
+            return this._personRepository.All
                 .Where(p => p.Removed == personSearchParameter.ShowRemoved)
                 .Select(p => new PersonDto()
                 {
@@ -50,7 +50,8 @@ namespace SingleAgenda.Application.Contact
 
         public async Task<PersonDto> GetByIdAsync(int id)
         {
-            var person = await this._context.Persons
+            var person = await this._personRepository.All
+                .Include(p => p.Addresses)
                 .Where(p => p.Id == id)
                 .Select(p => new PersonDto()
                 {
@@ -67,21 +68,6 @@ namespace SingleAgenda.Application.Contact
                 })
                 .SingleOrDefaultAsync();
 
-            if (person != null)
-            {
-                person.Addresses = this._context.Addresses
-                    .Where(ad => ad.PersonId == person.Id)
-                    .Select(ad => new AddressDto()
-                    {
-                        ZipCode = ad.ZipCode,
-                        City = ad.City,
-                        Country = ad.Country,
-                        Description = ad.Description,
-                        State = ad.State
-                    })
-                    .ToList();
-            }
-
             return person;
         }
 
@@ -93,8 +79,7 @@ namespace SingleAgenda.Application.Contact
                 try
                 {
                     var newPerson = PopulateThePersonEntityFromDto(person);
-                    this._context.Persons.Add(newPerson);
-                    result.InsertedId = await this._context.SaveChangesAsync();
+                    result.InsertedId = await this._personRepository.AddAsync(newPerson);
                     result.Success = true;
                 }
                 catch (Exception ex)
@@ -115,20 +100,13 @@ namespace SingleAgenda.Application.Contact
             {
                 try
                 {
-                    var currentPerson = await this._context.Persons
+                    var currentPerson = await this._personRepository.All
                         .Include(p => p.Addresses)
                         .Where(p => p.Id == person.Id)
                         .FirstOrDefaultAsync();
 
-                    if (currentPerson != null)
-                    {
-                        this._context.Addresses
-                            .RemoveRange(currentPerson.Addresses);
-
-                        PopulateThePersonForEdit(person, currentPerson);
-                        await this._context.SaveChangesAsync();
-                        result.Success = true;
-                    }
+                    PopulateThePersonForEdit(person, currentPerson);
+                    await this._personRepository.UpdateAsync(currentPerson);
                 }
                 catch (Exception ex)
                 {
@@ -147,17 +125,14 @@ namespace SingleAgenda.Application.Contact
 
             try
             {
-                var currentPerson = await this._context.Persons
+                var currentPerson = await this._personRepository.All
                     .Where(fr => fr.Id == id)
                     .FirstOrDefaultAsync();
 
                 if (currentPerson != null)
-                {
-                    currentPerson.UpdatedAt = DateTime.Now;
-                    currentPerson.Removed = true;
-                    await this._context.SaveChangesAsync();
-                    result.Success = true;
-                }
+                    await this._personRepository.DeleteAsync(currentPerson);
+                else
+                    result.Messages.Add("Not found");
             }
             catch (Exception ex)
             {
@@ -166,8 +141,6 @@ namespace SingleAgenda.Application.Contact
 
             return result;
         }
-
-        #endregion
 
         #region Private Methods
 
@@ -230,7 +203,7 @@ namespace SingleAgenda.Application.Contact
 
         private async Task<bool> EnsureNotExistsAsync(PersonDto person)
         {
-            return await this._context.Persons.AnyAsync(p =>
+            return await this._personRepository.All.AnyAsync(p =>
                 p.Id != person.Id &&
                 p.Name == person.Name &&
                 p.Document == person.Document);

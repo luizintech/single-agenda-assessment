@@ -1,31 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SingleAgenda.Application.Base;
 using SingleAgenda.Dtos.Messages;
 using SingleAgenda.Dtos.UsersAndRoles;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using SingleAgenda.EFPersistence.Configuration;
+using SingleAgenda.Application.Base;
+using SingleAgenda.EFPersistence.Repositories;
 
 namespace SingleAgenda.Application.UsersAndRoles
 {
     public class AuthBusiness
-        : BusinessBase
+        : IBusiness
     {
 
-        #region Constructor
+        private readonly UserRepository _userRepository;
 
-        public AuthBusiness(SingleAgendaDbContext context)
-            : base(context)
+        public AuthBusiness(UserRepository userRepository)
         {
+            this._userRepository = userRepository;
         }
-
-        #endregion
 
         #region Public Methods
 
@@ -34,7 +31,7 @@ namespace SingleAgenda.Application.UsersAndRoles
             var result = new AuthMessageDto();
             try
             {
-                var userSearch = await this._context.Users
+                var userSearch = await this._userRepository.All
                     .Where(us => us.Email == user.Email && us.Password == user.Password)
                     .Select(us => new UserDto()
                     {
