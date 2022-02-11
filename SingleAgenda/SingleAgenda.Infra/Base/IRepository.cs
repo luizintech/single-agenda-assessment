@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace SingleAgenda.Infra.Base
+namespace SingleAgenda.EFPersistence.Base
 {
-    public interface IRepository<T> where 
+    public interface IRepository<T> where
         T : class
     {
 

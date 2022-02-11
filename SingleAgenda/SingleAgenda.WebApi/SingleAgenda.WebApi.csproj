@@ -19,7 +19,7 @@
     <ProjectReference Include="..\SingleAgenda.Application\SingleAgenda.Application.csproj" />
     <ProjectReference Include="..\SingleAgenda.Dtos\SingleAgenda.Dtos.csproj" />
     <ProjectReference Include="..\SingleAgenda.Entities\SingleAgenda.Entities.csproj" />
-    <ProjectReference Include="..\SingleAgenda.Infra\SingleAgenda.Infra.csproj" />
+    <ProjectReference Include="..\SingleAgenda.Infra\SingleAgenda.EFPersistence.csproj" />
     <ProjectReference Include="..\SingleAgenda.Util\SingleAgenda.Util.csproj" />
   </ItemGroup>
 

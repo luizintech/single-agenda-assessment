@@ -1,11 +1,11 @@
-﻿using SingleAgenda.Entities.Contact;
-using SingleAgenda.Infra.Base;
-using SingleAgenda.Infra.Configuration;
+﻿using SingleAgenda.EFPersistence.Base;
+using SingleAgenda.EFPersistence.Configuration;
+using SingleAgenda.Entities.Contact;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingleAgenda.Infra.Repositories
+namespace SingleAgenda.EFPersistence.Repositories
 {
     public class PersonRepository
         : RepositoryBase<Person>
@@ -15,7 +15,7 @@ namespace SingleAgenda.Infra.Repositories
         //{
         //}
 
-        public PersonRepository(SingleAgendaDbContext context) 
+        public PersonRepository(SingleAgendaDbContext context)
             : base(context)
         {
         }

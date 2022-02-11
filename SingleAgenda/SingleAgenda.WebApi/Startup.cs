@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SingleAgenda.Infra.Configuration;
+using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Util.Application;
 using SingleAgenda.Util.Data;
 using SingleAgenda.Util.Security;

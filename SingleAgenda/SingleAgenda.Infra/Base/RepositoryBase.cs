@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Entities.Base;
-using SingleAgenda.Infra.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace SingleAgenda.Infra.Base
+namespace SingleAgenda.EFPersistence.Base
 {
     public abstract class RepositoryBase<T>
         : IRepository<T>, IDisposable
@@ -21,7 +21,7 @@ namespace SingleAgenda.Infra.Base
         //    : this(new SingleAgendaDbContext(serviceProvider))
         //{
         //}
-        
+
         public RepositoryBase(SingleAgendaDbContext context)
         {
             _context = context;
@@ -37,7 +37,7 @@ namespace SingleAgenda.Infra.Base
 
         public void Delete(int id)
         {
-            var entity = this.GetById(id);
+            var entity = GetById(id);
             entity.UpdatedAt = DateTime.Now;
             entity.Removed = true;
             _context.Entry(entity).State = EntityState.Modified;
@@ -46,7 +46,7 @@ namespace SingleAgenda.Infra.Base
 
         public IEnumerable<T> Get(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().Where(predicate).AsEnumerable<T>();
+            return _context.Set<T>().Where(predicate).AsEnumerable();
         }
 
         public IEnumerable<T> GetAll()

@@ -2,7 +2,6 @@
 using SingleAgenda.Application.Base;
 using SingleAgenda.Dtos.Messages;
 using SingleAgenda.Dtos.UsersAndRoles;
-using SingleAgenda.Infra.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using SingleAgenda.EFPersistence.Configuration;
 
 namespace SingleAgenda.Application.UsersAndRoles
 {

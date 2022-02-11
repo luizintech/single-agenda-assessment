@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
+using SingleAgenda.EFPersistence.Configuration;
 using SingleAgenda.Entities.Contact;
 using SingleAgenda.Entities.Location;
-using SingleAgenda.Infra.Base;
-using SingleAgenda.Infra.Configuration;
-using SingleAgenda.Infra.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;

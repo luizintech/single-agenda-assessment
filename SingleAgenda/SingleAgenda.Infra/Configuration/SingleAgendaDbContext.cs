@@ -8,7 +8,7 @@ using System.IO;
 using System.Configuration;
 using SingleAgenda.Entities.UsersAndRoles;
 
-namespace SingleAgenda.Infra.Configuration
+namespace SingleAgenda.EFPersistence.Configuration
 {
     public class SingleAgendaDbContext
         : DbContext

@@ -2,7 +2,7 @@
 using SingleAgenda.Application.Base;
 using SingleAgenda.Dtos.Contact;
 using SingleAgenda.Dtos.Dashboard;
-using SingleAgenda.Infra.Configuration;
+using SingleAgenda.EFPersistence.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;

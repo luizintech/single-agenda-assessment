@@ -1,11 +1,11 @@
-﻿using SingleAgenda.Entities.Location;
-using SingleAgenda.Infra.Base;
-using SingleAgenda.Infra.Configuration;
+﻿using SingleAgenda.EFPersistence.Base;
+using SingleAgenda.EFPersistence.Configuration;
+using SingleAgenda.Entities.Location;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingleAgenda.Infra.Repositories
+namespace SingleAgenda.EFPersistence.Repositories
 {
     public class AddressRepository
         : RepositoryBase<Address>
