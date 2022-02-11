@@ -52,7 +52,8 @@ namespace SingleAgenda.WebApi
             });
 
             services.AddControllers();
-            services.AddBusiness(this.Configuration);
+            services.AddRepositories();
+            services.AddBusiness();
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

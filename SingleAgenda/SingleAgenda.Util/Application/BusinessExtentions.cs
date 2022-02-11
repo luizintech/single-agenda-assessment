@@ -12,8 +12,7 @@ namespace SingleAgenda.Infra.IoC.Application
     public static class BusinessExtentions
     {
 
-        public static IServiceCollection AddBusiness(this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection AddBusiness(this IServiceCollection services)
         {
             services.AddScoped<ContactBusiness>();
             services.AddScoped<AuthBusiness>();
